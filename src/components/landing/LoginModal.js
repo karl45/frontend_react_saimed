@@ -1,4 +1,8 @@
 import React from 'react'
+import {
+    BrowserRouter as Router,
+    Link
+  } from "react-router-dom";
 import Dialog from '@material-ui/core/Dialog'
 import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
@@ -38,12 +42,19 @@ const LoginModal = props => {
             <Button onClick={onClose} color="primary">
                 Cancel
             </Button>
-            <Button onClick={onClose} color="primary">
-                Subscribe
-            </Button>
-            </DialogActions>
+           
+            <Link style={{textDecoration: 'none' }} to="/LandingAuth">
+            <Button color="primary">
+                Login
+                </Button>
+            </Link>
+        {/* <Button onClick={onClose} color="primary" >
+            Login
+        </Button> */}
+         </DialogActions>
         </Dialog>
     )
 }
 
+  
 export default LoginModal
