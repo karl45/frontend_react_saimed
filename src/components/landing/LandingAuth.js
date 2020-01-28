@@ -7,12 +7,15 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
+import SwitchRoll from '@material-ui/core/Switch';
 import {
     Switch,
     Route,
   } from "react-router-dom";
   import classNames from 'classnames';
+  import Grid from '@material-ui/core/Grid'
 import AppBar from '@material-ui/core/AppBar';
+import Checkbox from '@material-ui/core/Checkbox';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
@@ -30,10 +33,21 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import DraftsIcon from '@material-ui/icons/Drafts';
+import AlarmOnIcon from '@material-ui/icons/AlarmOn';
+import Popover from '@material-ui/core/Popover';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 import {
     BrowserRouter as Router,
     Link
   } from "react-router-dom";
+  import Fab from '@material-ui/core/Fab';
+  import DeleteIcon from '@material-ui/icons/Delete';
+  import EditIcon from '@material-ui/icons/Edit';
+  import Paper from '@material-ui/core/Paper';
+  import FilterListIcon from '@material-ui/icons/FilterList';
+  import { green } from '@material-ui/core/colors';
+
 
 const drawerWidth = 240;
 
@@ -41,7 +55,11 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
   },
-  
+  fab: {
+    position: 'absolute',
+    bottom: theme.spacing(2),
+    right: theme.spacing(2),
+  },
   appBar: {
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
@@ -56,7 +74,11 @@ const useStyles = makeStyles(theme => ({
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
-  
+  alarmOn:{
+    color:green[500],
+    fontSize:50,
+  },
+   
   menuButton: {
     marginRight: theme.spacing(2),
   },
@@ -126,6 +148,16 @@ titleShrinkSize: {
     transition: '0.3s',
     fontSize: '1.25em',
 },
+paper: {
+  padding: theme.spacing(2),
+  textAlign: 'center',
+  color: theme.palette.text.primary,
+},
+paperIcons: {
+  margin:theme.spacing(3),
+
+
+},
 navButton: {
     fontFamily: "'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';",
     color: 'white',
@@ -143,13 +175,40 @@ userIcon: {
 
 
 const LandingAuth = props => {  
+    
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
     const [selectedIndex, setSelectedIndex] = React.useState(1);
     const [scrolledDown, setScrolledDown] = useState(false);
     const { openLoginModal } = props;
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [state, setState] = React.useState({
+      checkedA:false,
+      checkedA1:false,
+      checkedB:false,
+      checkedB1:false
+    });
+    
+    const handleChange = name => event => {
+      setState({ ...state, [name]: event.target.checked });
+    };
+    const handleSort=(name_check,name_uncheck)=>event=>{
+      setState({...state,[name_check]:event.target.checked,[name_uncheck]:false});
+    }
+    
+    const handleClick = event => {
+      setAnchorEl(event.currentTarget);
+    };
+  
+    const handleClose = () => {
+      setAnchorEl(null);
+    };
+  
+    const openFilter = Boolean(anchorEl);
+    const id = openFilter ? 'simple-popover' : undefined;
 
+    
     useEffect(() => {
         window.addEventListener('scroll', () => {
             const isTop = window.scrollY < 100
@@ -163,6 +222,9 @@ const LandingAuth = props => {
 
     const handleListItemClick = (event, index) => {
         setSelectedIndex(index);
+      };
+      const handleProfileMenuOpen = event => {
+        setAnchorEl(event.currentTarget);
       };
     const handleDrawerOpen = () => {
       setOpen(true);
@@ -192,9 +254,94 @@ const LandingAuth = props => {
               <MenuIcon />
             </IconButton>
             <Typography className={classNames(classes.title, scrolledDown ? classes.titleShrinkSize : '')}>
-                            SAIMED
+              SAIMED
             </Typography>
+            <IconButton
+              edge="end"
+              aria-label="account of current user"
+              aria-haspopup="true"
+              onClick={handleClick}
+              color="inherit">
+              <FilterListIcon />
+            </IconButton>
+        
           </Toolbar>
+          <Popover
+        id={id}
+        className={classes.popoverWidth}
+        open={openFilter}
+        anchorEl={anchorEl}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'center',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'center',
+        }}
+      >
+        <Grid container spacing={5}>
+        <Grid item xs={12}>
+          <Typography variant="h4">Сортировать по</Typography>
+          <Divider/>
+          <List>
+          <Paper className={classes.paper}>
+            <ListItem>
+          <FormControlLabel
+        control={
+          <SwitchRoll
+            checked={state.checkedB}
+            onChange={handleSort('checkedB','checkedB1')}
+            value="checkedB"
+            color="primary"
+          />
+        }
+        label="По возрастанию"
+      />
+      </ListItem>
+      <ListItem>
+      <FormControlLabel
+      control={
+        <SwitchRoll
+          checked={state.checkedB1}
+          onChange={handleSort('checkedB1','checkedB')}
+          value="checkedB1"
+          color="primary"
+        />
+      }
+      label="По убыванию"
+    />
+    </ListItem>
+          </Paper>
+          </List>
+        </Grid>
+        <Grid item xs={12}>
+        <Typography variant="h4">Критерии</Typography>
+          <Divider/>
+          <List>
+          <Paper className={classes.paper}>
+            <ListItem>
+            <FormControlLabel
+            control={
+              <Checkbox checked={state.checkedA} onChange={handleChange('checkedA')} value="checkedA" />
+              }
+              label="Дата"
+            />
+            </ListItem>
+            <ListItem>
+            <FormControlLabel
+              control={
+                <Checkbox checked={state.checkedA1} onChange={handleChange('checkedA1')} value="checkedA1" />
+              }
+              label="Статус"
+            />
+            </ListItem>
+            </Paper>
+          </List>
+        </Grid>
+          </Grid>
+      </Popover>
         </AppBar>
         <Drawer
           className={classes.drawer}
@@ -206,12 +353,13 @@ const LandingAuth = props => {
           }}
         >
           <div className={classes.drawerHeader}>
-          <Button color="primary" onClick={openLoginModal}> 
-          <FontAwesomeIcon icon={faUserCircle} size="4x" style={{paddingRight:3}} className={classes.userIcon}/> Пользователь
-          </Button>
+       
             <IconButton onClick={handleDrawerClose}>
               {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
             </IconButton>
+               <Button color="primary" onClick={openLoginModal}> 
+          <FontAwesomeIcon icon={faUserCircle} size="4x" style={{paddingRight:3}} className={classes.userIcon}/> Пользователь
+          </Button>
           </div>
 
           <Divider />
@@ -249,7 +397,37 @@ const LandingAuth = props => {
             [classes.contentShift]: open,
           })}>
           <div className={classes.drawerHeader} />
-         It is booking
+          <Typography variant="h2">Booking page</Typography>
+          <List>
+          <Paper>
+
+          <ListItem>
+          <ListItemIcon>
+            <AlarmOnIcon className={classes.alarmOn}/>
+            
+          </ListItemIcon>
+          <ListItemText >
+            <Grid container spacing={3}>
+            <Grid item xs={9}>
+          <div className={classes.paper}>
+           <h2>Понедельник 12 октября, 09:00</h2>
+          </div>
+        </Grid>
+        <Grid item xs={3}>
+
+            <Fab color="secondary" className={classes.paperIcons}>
+              <EditIcon />
+            </Fab>
+            <Fab >
+              <DeleteIcon/>
+            </Fab>
+        </Grid>
+            </Grid>
+           
+          </ListItemText>
+        </ListItem>
+        </Paper>
+        </List>
         </main>
     </Route>
          <Route path="/LandingAuth/MedicalReceipts">
