@@ -46,10 +46,11 @@ import {
   import EditIcon from '@material-ui/icons/Edit';
   import Paper from '@material-ui/core/Paper';
   import FilterListIcon from '@material-ui/icons/FilterList';
-  import { green } from '@material-ui/core/colors';
+  import DescriptionIcon from '@material-ui/icons/Description';
+  import AddIcon from '@material-ui/icons/Add';
+  import { green, blue, red } from '@material-ui/core/colors';
 
 
-const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -59,21 +60,38 @@ const useStyles = makeStyles(theme => ({
     position: 'absolute',
     bottom: theme.spacing(2),
     right: theme.spacing(2),
+   
   },
+  fabDelete:{
+    marginTop:theme.spacing(3),
+    marginRight:theme.spacing(3),
+    marginLeft:theme.spacing(2),
+    backgroundColor:red[900],
+    color:"white",
+    '&:hover':{
+      backgroundColor:"white",
+      color:red[500]
+    }
+  },
+  fabAdd:{
+    position: 'absolute',
+    bottom: theme.spacing(2),
+    right: theme.spacing(2),
+    backgroundColor:blue[500],
+    color:"white",
+    '&:hover':{
+      backgroundColor:"white",
+      color:blue[500]
+    }
+  },
+
   appBar: {
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
   },
-  appBarShift: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
+  
   alarmOn:{
     color:green[500],
     fontSize:50,
@@ -85,13 +103,8 @@ const useStyles = makeStyles(theme => ({
   hide: {
     display: 'none',
   },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-  },
-  drawerPaper: {
-    width: drawerWidth,
-  },
+ 
+ 
   drawerHeader: {
     display: 'flex',
     alignItems: 'center',
@@ -101,12 +114,12 @@ const useStyles = makeStyles(theme => ({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3),
+    padding: theme.spacing(10),
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    marginLeft: -drawerWidth,
+
   },
   contentShift: {
     transition: theme.transitions.create('margin', {
@@ -149,14 +162,18 @@ titleShrinkSize: {
     fontSize: '1.25em',
 },
 paper: {
-  padding: theme.spacing(2),
+  paddingTop: theme.spacing(2),
+  paddingBottom:theme.spacing(2),
   textAlign: 'center',
   color: theme.palette.text.primary,
 },
 paperIcons: {
-  margin:theme.spacing(3),
-
-
+  marginTop:theme.spacing(3),
+  marginRight:theme.spacing(3),
+  marginLeft:theme.spacing(2)
+},
+IconDecription:{
+  marginRight: theme.spacing(1),
 },
 navButton: {
     fontFamily: "'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';",
@@ -177,9 +194,7 @@ userIcon: {
 const LandingAuth = props => {  
     
     const classes = useStyles();
-    const theme = useTheme();
     const [open, setOpen] = React.useState(false);
-    const [selectedIndex, setSelectedIndex] = React.useState(1);
     const [scrolledDown, setScrolledDown] = useState(false);
     const { openLoginModal } = props;
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -220,19 +235,8 @@ const LandingAuth = props => {
         })
     })
 
-    const handleListItemClick = (event, index) => {
-        setSelectedIndex(index);
-      };
-      const handleProfileMenuOpen = event => {
-        setAnchorEl(event.currentTarget);
-      };
-    const handleDrawerOpen = () => {
-      setOpen(true);
-    };
   
-    const handleDrawerClose = () => {
-      setOpen(false);
-    };
+ 
   
     return (
       <div className={classes.root}>
@@ -244,15 +248,7 @@ const LandingAuth = props => {
           })}
         >
           <Toolbar>
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              onClick={handleDrawerOpen}
-              edge="start"
-              className={clsx(classes.menuButton, open && classes.hide)}
-            >
-              <MenuIcon />
-            </IconButton>
+            
             <Typography className={classNames(classes.title, scrolledDown ? classes.titleShrinkSize : '')}>
               SAIMED
             </Typography>
@@ -343,61 +339,12 @@ const LandingAuth = props => {
           </Grid>
       </Popover>
         </AppBar>
-        <Drawer
-          className={classes.drawer}
-          variant="persistent"
-          anchor="left"
-          open={open}
-          classes={{
-            paper: classes.drawerPaper,
-          }}
-        >
-          <div className={classes.drawerHeader}>
-       
-            <IconButton onClick={handleDrawerClose}>
-              {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-            </IconButton>
-               <Button color="primary" onClick={openLoginModal}> 
-          <FontAwesomeIcon icon={faUserCircle} size="4x" style={{paddingRight:3}} className={classes.userIcon}/> Пользователь
-          </Button>
-          </div>
-
-          <Divider />
-          <List>
-              <Link to='/LandingAuth/Booking'>
-          <ListItem
-          button
-          selected={selectedIndex === 0}
-          onClick={event => handleListItemClick(event, 0)}>
-     
-          <ListItemIcon>
-            <InboxIcon />
-          </ListItemIcon>
-          <ListItemText primary="Booking" />
-        </ListItem>
-        </Link>
-        <Link to='/LandingAuth/MedicalReceipts'>
-        <ListItem
-          button
-          selected={selectedIndex === 1}
-          onClick={event => handleListItemClick(event, 1)}
-        >
-          <ListItemIcon>
-            <DraftsIcon />
-          </ListItemIcon>
-          <ListItemText primary="MedicalReceipts" />
-        </ListItem>
-        </Link>
-          </List>
-        </Drawer>
-        <Switch>
-    <Route exact path="/LandingAuth/Booking">
+  
     <main
           className={clsx(classes.content, {
             [classes.contentShift]: open,
           })}>
-          <div className={classes.drawerHeader} />
-          <Typography variant="h2">Booking page</Typography>
+        <Typography variant="h2">Your cabinet</Typography>
           <List>
           <Paper>
 
@@ -407,19 +354,25 @@ const LandingAuth = props => {
             
           </ListItemIcon>
           <ListItemText >
-            <Grid container spacing={3}>
-            <Grid item xs={9}>
+            <Grid container spacing={1}>
+            <Grid item xs={7}>
           <div className={classes.paper}>
            <h2>Понедельник 12 октября, 09:00</h2>
           </div>
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={5}>
 
-            <Fab color="secondary" className={classes.paperIcons}>
-              <EditIcon />
+            <Fab variant="extended" color="secondary" className={classes.paperIcons}>
+              <EditIcon className={classes.DescriptionIcon}/>
+              Изменить
             </Fab>
-            <Fab >
-              <DeleteIcon/>
+            <Fab variant="extended" className={classes.fabDelete}>
+              <DeleteIcon className={classes.DescriptionIcon}/>
+              Удалить
+            </Fab>
+            <Fab variant="extended" className={classes.paperIcons}>
+              <DescriptionIcon className={classes.DescriptionIcon}/>
+              Заключение
             </Fab>
         </Grid>
             </Grid>
@@ -428,20 +381,11 @@ const LandingAuth = props => {
         </ListItem>
         </Paper>
         </List>
+        <Fab variant="extended" className={classes.fabAdd} >
+            <AddIcon  className={classes.DescriptionIcon}/>
+            Добавить запись
+          </Fab>
         </main>
-    </Route>
-         <Route path="/LandingAuth/MedicalReceipts">
-         <main
-          className={clsx(classes.content, {
-            [classes.contentShift]: open,
-          })}>
-          <div className={classes.drawerHeader} />
-         It is medical receipts
-        </main>
-         </Route>
-
-         </Switch>
-        
       </div>
     );
   }
