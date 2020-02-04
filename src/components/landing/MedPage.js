@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react'
 import clsx from 'clsx';
-import {Button} from  '@material-ui/core';
+import {Button, TextField} from  '@material-ui/core';
 import { useEffect } from 'react';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
@@ -216,7 +216,7 @@ userIcon: {
 }));
 
 
-const LandingAuth = props => {  
+const MedPage = props => {  
     
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
@@ -412,97 +412,83 @@ const LandingAuth = props => {
           className={clsx(classes.content, {
             [classes.contentShift]: open,
           })}>
-        <Typography variant="h2">Ближайшие посещения</Typography>
-          <List>
-          <Paper>
-
-          <ListItem>
-          <ListItemIcon>
-            <AlarmIcon className={classes.alarm}/>
-            
-          </ListItemIcon>
-          <ListItemText >
+            <List>
+              <ListItem>
             <Grid container spacing={1}>
-            <Grid item xs={7}>
-          <div className={classes.paper}>
-           <h2>Понедельник 12 октября, 09:00</h2>
-          </div>
-        </Grid>
-        <Grid item xs={5}>
+              <Grid item xs={12}>
+               <Paper>
+              <TextField 
+              id="outlined-multiline-static" 
+              label="Симптомы" 
+              variant="outlined"
+              fullWidth
+              multiline
+              rows="5">
 
-            <Fab variant="extended" className={classes.fabEdit}>
-              <EditIcon className={classes.DescriptionIcon}/>
-              Изменить
-            </Fab>
-            <Fab variant="extended" className={classes.fabDelete}>
-              <DeleteIcon className={classes.DescriptionIcon}/>
-              Удалить
-            </Fab>
-            <Fab variant="extended" className={classes.fabDescription}>
-              <DescriptionIcon className={classes.DescriptionIcon}/>
-              Заключение
-            </Fab>
-        </Grid>
-            </Grid>
-           
-          </ListItemText>
-        </ListItem>
-        </Paper>
-        </List>
-        <Fab variant="extended" className={classes.fabAdd} >
-            <AddIcon  className={classes.DescriptionIcon}/>
-            Добавить запись
-          </Fab>
+              </TextField>
+              </Paper>
+              </Grid>
+              </Grid>
+              </ListItem>
 
-          <Typography variant="h2">Прошлые посещения</Typography>
-          <List>
-          <Paper>
-
-          <ListItem>
-          <ListItemIcon>
-            <AlarmOnIcon className={classes.alarmOn}/>
-            
-          </ListItemIcon>
-          <ListItemText >
+              <ListItem>
             <Grid container spacing={1}>
-            <Grid item xs={7}>
-          <div className={classes.paper}>
-           <h2>Понедельник 12 октября, 09:00</h2>
-          </div>
-        </Grid>
-        <Grid item xs={5}>
+              <Grid item xs={12}>
+               <Paper>
+              <TextField 
+              id="outlined-multiline-static" 
+              label="Диагноз" 
+              variant="outlined"
+              fullWidth
+              multiline
+              rows="5">
 
-            <Fab variant="extended" className={classes.fabEdit}>
-              <EditIcon className={classes.DescriptionIcon}/>
-              Изменить
-            </Fab>
-            <Fab variant="extended" className={classes.fabDelete}>
-              <DeleteIcon className={classes.DescriptionIcon}/>
-              Удалить
-            </Fab>
-            <Fab variant="extended" className={classes.fabDescription}>
-              <DescriptionIcon className={classes.DescriptionIcon}/>
-              Заключение
-            </Fab>
-        </Grid>
-            </Grid>
-           
-          </ListItemText>
-        </ListItem>
-        </Paper>
-        </List>
-        <Fab variant="extended" className={classes.fabAdd} >
-            <AddIcon  className={classes.DescriptionIcon}/>
-            Добавить запись
-          </Fab>
+              </TextField>
+              </Paper>
+              </Grid>
+              </Grid>
+              </ListItem>
+
+              <ListItem>
+            <Grid container spacing={1}>
+              <Grid item xs={12}>
+               <Paper>
+              <TextField 
+              id="outlined-multiline-static" 
+              label="Медицинские рекомендации" 
+              variant="outlined"
+              fullWidth
+              multiline
+              rows="5">
+
+              </TextField>
+              </Paper>
+              </Grid>
+              </Grid>
+              </ListItem>
+
+         
+
+              <ListItem>
+            <Grid container spacing={1}>
+              <Grid item xs={12}>
+               <Paper>
+               <Button color="primary">
+                Закончить приём
+            </Button>
+              </Paper>
+              </Grid>
+              </Grid>
+              </ListItem>
+              </List>
         </main>
       </div>
     );
   }
   
-  LandingAuth.propTypes = {
+    MedPage.propTypes = {
     container: PropTypes.instanceOf(typeof Element === 'undefined' ? Object : Element),
   };
   
 
-export default LandingAuth
+export default MedPage

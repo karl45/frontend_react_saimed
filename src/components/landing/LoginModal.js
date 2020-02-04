@@ -10,6 +10,7 @@ import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import { TextField, Button } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
+import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
     dialogTitle: {
@@ -19,39 +20,59 @@ const useStyles = makeStyles({
 
 const LoginModal = props => {
     const { open, onClose } = props
+    const [isDoctor, setIsDoctor] = React.useState('/LandingMedic');
+    const [email,setEmail] = React.useState('');
     const classes = useStyles()
 
+    const handleChange = event =>{
+        setEmail(event.target.value);
+        if(email == 'doctor'){
+            setIsDoctor("/LandingMedic")
+            console.log(isDoctor)
+
+        }
+        else{
+            setIsDoctor('/LandingAuth')
+    
+        }
+    }
+  const handleSubmit = () => {
+    console.log(isDoctor)
+
+  }
+    
     return (
         <Dialog open={open} onClose={onClose} aria-labelledby="form-dialog-title">
             <DialogTitle id="form-dialog-title" className={classes.dialogTitle}>Войти в кабинет</DialogTitle>
             <DialogContent>
-            <DialogContentText>
-                To subscribe to this website, please enter your email address here. We will send updates
-                occasionally.
-            </DialogContentText>
+
             <TextField
-                autoFocus
                 margin="dense"
                 id="name"
-                label="Email Address"
-                type="email"
+                label="login"
+                type="text"
                 fullWidth
+            />
+              <TextField
+                margin="dense"
+                id="name"
+                label="Password"
+                type="password"
+                fullWidth
+                onFocus={handleChange}
             />
             </DialogContent>
             <DialogActions>
             <Button onClick={onClose} color="primary">
                 Cancel
             </Button>
-           
-            <Link style={{textDecoration: 'none' }} to="/LandingAuth">
-            <Button color="primary">
+            <Link style={{textDecoration: 'none' }} to={isDoctor}>
+            <Button onClick={handleSubmit} color="primary">
                 Login
                 </Button>
             </Link>
-        {/* <Button onClick={onClose} color="primary" >
-            Login
-        </Button> */}
          </DialogActions>
+     
         </Dialog>
     )
 }

@@ -216,7 +216,7 @@ userIcon: {
 }));
 
 
-const LandingAuth = props => {  
+const LandingMedic = props => {  
     
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
@@ -425,22 +425,23 @@ const LandingAuth = props => {
             <Grid container spacing={1}>
             <Grid item xs={7}>
           <div className={classes.paper}>
-           <h2>Понедельник 12 октября, 09:00</h2>
+           <h2>Бескожаев Бердыбек Бубульгумович</h2>
           </div>
         </Grid>
         <Grid item xs={5}>
-
+          <Link style={{textDecoration: 'none' }} to={"/MedPage"}>
             <Fab variant="extended" className={classes.fabEdit}>
               <EditIcon className={classes.DescriptionIcon}/>
-              Изменить
+              Принять
             </Fab>
+          </Link>
             <Fab variant="extended" className={classes.fabDelete}>
               <DeleteIcon className={classes.DescriptionIcon}/>
-              Удалить
+              Отменить
             </Fab>
             <Fab variant="extended" className={classes.fabDescription}>
               <DescriptionIcon className={classes.DescriptionIcon}/>
-              Заключение
+              Отложить
             </Fab>
         </Grid>
             </Grid>
@@ -467,23 +468,20 @@ const LandingAuth = props => {
             <Grid container spacing={1}>
             <Grid item xs={7}>
           <div className={classes.paper}>
-           <h2>Понедельник 12 октября, 09:00</h2>
+           <h2>Рахимбеков Лугатип Разпинуевич</h2>
           </div>
         </Grid>
         <Grid item xs={5}>
 
             <Fab variant="extended" className={classes.fabEdit}>
               <EditIcon className={classes.DescriptionIcon}/>
-              Изменить
+              Редактировать
             </Fab>
             <Fab variant="extended" className={classes.fabDelete}>
               <DeleteIcon className={classes.DescriptionIcon}/>
               Удалить
             </Fab>
-            <Fab variant="extended" className={classes.fabDescription}>
-              <DescriptionIcon className={classes.DescriptionIcon}/>
-              Заключение
-            </Fab>
+
         </Grid>
             </Grid>
            
@@ -500,9 +498,9 @@ const LandingAuth = props => {
     );
   }
   
-  LandingAuth.propTypes = {
+  LandingMedic.propTypes = {
     container: PropTypes.instanceOf(typeof Element === 'undefined' ? Object : Element),
   };
   
 
-export default LandingAuth
+export default LandingMedic
