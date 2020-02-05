@@ -59,19 +59,34 @@ const useStyles = makeStyles(theme => ({
   fab: {
     position: 'absolute',
     bottom: theme.spacing(2),
-    right: theme.spacing(2),
-   
+    right: theme.spacing(2)  
+  },
+  gridbutton:{
+    height:'2vh'
   },
   fabDelete:{
-    marginTop:theme.spacing(3),
-    marginRight:theme.spacing(3),
-    marginLeft:theme.spacing(2),
     backgroundColor:red[900],
     color:"white",
     '&:hover':{
       backgroundColor:"white",
       color:red[500]
+    },
+    [theme.breakpoints.down('xs')]: {
+      display:'none',
     }
+    
+  },
+  fabDelIcon:{
+    backgroundColor:red[900],
+    color:"white",
+    display:'none',
+    '&:hover':{
+      backgroundColor:"white",
+      color:red[500]
+    },
+    [theme.breakpoints.down('xs')]: {
+      display:'inline',
+    },
   },
   fabAdd:{
     position: 'absolute',
@@ -85,26 +100,51 @@ const useStyles = makeStyles(theme => ({
     }
   },
   fabEdit:{
-    marginTop:theme.spacing(3),
-    marginRight:theme.spacing(3),
-    marginLeft:theme.spacing(2),
     backgroundColor:"#3897ba",
     color:"white",
     '&:hover':{
       backgroundColor:"white",
       color:"#3897ba"
+    },
+    [theme.breakpoints.down('xs')]: {
+      display:'none',
     }
+  
+  },
+  fabEdIcon:{
+    backgroundColor:"#3897ba",
+    display:'none',
+    color:"white",
+    '&:hover':{
+      backgroundColor:"white",
+      color:"#3897ba"
+    },
+    [theme.breakpoints.down('xs')]: {
+      display:'inline',
+    },
   },
   fabDescription:{
-    marginTop:theme.spacing(3),
-    marginRight:theme.spacing(3),
-    marginLeft:theme.spacing(2),
     backgroundColor:"#1c8045",
     color:"white",
     '&:hover':{
       backgroundColor:"white",
       color:"#1c8045"
+    },
+    [theme.breakpoints.down('xs')]: {
+      display:'none',
     }
+  },
+  fabDescIcon:{
+    display:'none',
+    backgroundColor:"#1c8045",
+    color:"white",
+    '&:hover':{
+      backgroundColor:"white",
+      color:"#1c8045"
+    },
+    [theme.breakpoints.down('xs')]: {
+      display:'inline',
+    },
   },
 
   appBar: {
@@ -139,7 +179,8 @@ const useStyles = makeStyles(theme => ({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(10),
+    paddingTop: theme.spacing(10),
+    paddingBottom:theme.spacing(10),
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -153,8 +194,7 @@ const useStyles = makeStyles(theme => ({
     }),
     marginLeft: 0,
   },
-  container: {
-},
+
 toolbar: {
     transition: '0.3s',
     paddingTop: '16px',
@@ -187,16 +227,16 @@ titleShrinkSize: {
     fontSize: '1.25em',
 },
 paper: {
-  paddingTop: theme.spacing(2),
-  paddingBottom:theme.spacing(2),
   textAlign: 'center',
+  fontSize:'2vw',
   color: theme.palette.text.primary,
 },
-paperIcons: {
-  marginTop:theme.spacing(3),
-  marginRight:theme.spacing(3),
-  marginLeft:theme.spacing(2)
+typo:{
+  fontSize:'5vw',
+  color: theme.palette.text.primary,
 },
+
+
 IconDecription:{
   marginRight: theme.spacing(1),
 },
@@ -210,9 +250,7 @@ navButton: {
         color: "#fed136",
     }
 },
-userIcon: {
-    marginLeft: '10px'
-}
+
 }));
 
 
@@ -230,20 +268,7 @@ const LandingMedic = props => {
       checkedB1:false
     });
     
-    const handleChange = name => event => {
-      setState({ ...state, [name]: event.target.checked });
-    };
-    const handleSort=(name_check,name_uncheck)=>event=>{
-      setState({...state,[name_check]:event.target.checked,[name_uncheck]:false});
-    }
-    
-    const handleClick = event => {
-      setAnchorEl(event.currentTarget);
-    };
-  
-    const handleClose = () => {
-      setAnchorEl(null);
-    };
+   
     
     const handleUserClick=event=>{
       setuseranchEl(event.currentTarget);
@@ -284,14 +309,7 @@ const LandingMedic = props => {
             <Typography className={classNames(classes.title, scrolledDown ? classes.titleShrinkSize : '')}>
               SAIMED
             </Typography>
-            <IconButton
-              edge="end"
-              aria-label="account of current user"
-              aria-haspopup="true"
-              onClick={handleClick}
-              color="inherit">
-              <FilterListIcon />
-            </IconButton>
+            
             <IconButton edge="end"
               aria-label="account of current user"
               aria-haspopup="true"
@@ -300,82 +318,6 @@ const LandingMedic = props => {
               <AccountCircleIcon/>
             </IconButton>
           </Toolbar>
-          <Popover
-        id={id}
-        className={classes.popoverWidth}
-        open={openFilter}
-        anchorEl={anchorEl}
-        onClose={handleClose}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'center',
-        }}
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'center',
-        }}
-      >
-        <Grid container spacing={5}>
-        <Grid item xs={12}>
-          <Typography variant="h4">Сортировать по</Typography>
-          <Divider/>
-          <List>
-          <Paper className={classes.paper}>
-            <ListItem>
-          <FormControlLabel
-        control={
-          <SwitchRoll
-            checked={state.checkedB}
-            onChange={handleSort('checkedB','checkedB1')}
-            value="checkedB"
-            color="primary"
-          />
-        }
-        label="По возрастанию"
-      />
-      </ListItem>
-      <ListItem>
-      <FormControlLabel
-      control={
-        <SwitchRoll
-          checked={state.checkedB1}
-          onChange={handleSort('checkedB1','checkedB')}
-          value="checkedB1"
-          color="primary"
-        />
-      }
-      label="По убыванию"
-    />
-    </ListItem>
-          </Paper>
-          </List>
-        </Grid>
-        <Grid item xs={12}>
-        <Typography variant="h4">Критерии</Typography>
-          <Divider/>
-          <List>
-          <Paper className={classes.paper}>
-            <ListItem>
-            <FormControlLabel
-            control={
-              <Checkbox checked={state.checkedA} onChange={handleChange('checkedA')} value="checkedA" />
-              }
-              label="Дата"
-            />
-            </ListItem>
-            <ListItem>
-            <FormControlLabel
-              control={
-                <Checkbox checked={state.checkedA1} onChange={handleChange('checkedA1')} value="checkedA1" />
-              }
-              label="Статус"
-            />
-            </ListItem>
-            </Paper>
-          </List>
-        </Grid>
-          </Grid>
-      </Popover>
       <Popover
         id={user_id}
         className={classes.popoverWidth}
@@ -391,18 +333,14 @@ const LandingMedic = props => {
           horizontal: 'center',
         }}
       >
-        
         <Grid item xs={12}>
-        
           <List>
             <ListItem>
             <Button href="#appointments">Редактировать</Button>
-
             </ListItem>
             <ListItem>
             <Button href="#appointments">Выйти</Button>
             </ListItem>
-
           </List>
         </Grid>
       </Popover>
@@ -412,37 +350,58 @@ const LandingMedic = props => {
           className={clsx(classes.content, {
             [classes.contentShift]: open,
           })}>
-        <Typography variant="h2">Ближайшие посещения</Typography>
+        <Typography className={classes.typo}>Ближайшие посещения</Typography>
           <List>
           <Paper>
 
           <ListItem>
           <ListItemIcon>
             <AlarmIcon className={classes.alarm}/>
-            
           </ListItemIcon>
           <ListItemText >
-            <Grid container spacing={1}>
+            <Grid container justify="center" alignItems="center" spacing={1}>
             <Grid item xs={7}>
           <div className={classes.paper}>
            <h2>Бескожаев Бердыбек Бубульгумович</h2>
           </div>
         </Grid>
         <Grid item xs={5}>
-          <Link style={{textDecoration: 'none' }} to={"/MedPage"}>
+          <Grid container spacing={2}>
+          <Grid item xs={4}>
+          <Link style = {{textDecoration:'none'}} to={"/MedPage"}>
             <Fab variant="extended" className={classes.fabEdit}>
               <EditIcon className={classes.DescriptionIcon}/>
               Принять
             </Fab>
           </Link>
+          <Link style = {{textDecoration:'none'}} to={"/MedPage"}>
+            <Fab size="small" className={classes.fabEdIcon}>
+              <EditIcon className={classes.DescriptionIcon}/>
+             
+            </Fab>
+          </Link>
+          
+          
+          </Grid>
+           <Grid item xs={4}>
             <Fab variant="extended" className={classes.fabDelete}>
               <DeleteIcon className={classes.DescriptionIcon}/>
               Отменить
             </Fab>
+            <Fab size="small" className={classes.fabDelIcon}>
+              <DeleteIcon className={classes.DescriptionIcon}/>
+            </Fab>
+            </Grid>
+           <Grid item xs={4}>
             <Fab variant="extended" className={classes.fabDescription}>
               <DescriptionIcon className={classes.DescriptionIcon}/>
               Отложить
             </Fab>
+            <Fab size="small" className={classes.fabDescIcon}>
+              <DescriptionIcon className={classes.DescriptionIcon}/>
+            </Fab>
+          </Grid> 
+            </Grid>
         </Grid>
             </Grid>
            
@@ -450,13 +409,10 @@ const LandingMedic = props => {
         </ListItem>
         </Paper>
         </List>
-        <Fab variant="extended" className={classes.fabAdd} >
-            <AddIcon  className={classes.DescriptionIcon}/>
-            Добавить запись
-          </Fab>
+      
 
-          <Typography variant="h2">Прошлые посещения</Typography>
-          <List>
+          <Typography className={classes.typo}>Прошлые посещения</Typography>
+          {/* <List>
           <Paper>
 
           <ListItem>
@@ -488,7 +444,7 @@ const LandingMedic = props => {
           </ListItemText>
         </ListItem>
         </Paper>
-        </List>
+        </List> */}
         <Fab variant="extended" className={classes.fabAdd} >
             <AddIcon  className={classes.DescriptionIcon}/>
             Добавить запись

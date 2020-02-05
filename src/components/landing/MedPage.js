@@ -284,14 +284,7 @@ const MedPage = props => {
             <Typography className={classNames(classes.title, scrolledDown ? classes.titleShrinkSize : '')}>
               SAIMED
             </Typography>
-            <IconButton
-              edge="end"
-              aria-label="account of current user"
-              aria-haspopup="true"
-              onClick={handleClick}
-              color="inherit">
-              <FilterListIcon />
-            </IconButton>
+            
             <IconButton edge="end"
               aria-label="account of current user"
               aria-haspopup="true"
@@ -300,82 +293,6 @@ const MedPage = props => {
               <AccountCircleIcon/>
             </IconButton>
           </Toolbar>
-          <Popover
-        id={id}
-        className={classes.popoverWidth}
-        open={openFilter}
-        anchorEl={anchorEl}
-        onClose={handleClose}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'center',
-        }}
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'center',
-        }}
-      >
-        <Grid container spacing={5}>
-        <Grid item xs={12}>
-          <Typography variant="h4">Сортировать по</Typography>
-          <Divider/>
-          <List>
-          <Paper className={classes.paper}>
-            <ListItem>
-          <FormControlLabel
-        control={
-          <SwitchRoll
-            checked={state.checkedB}
-            onChange={handleSort('checkedB','checkedB1')}
-            value="checkedB"
-            color="primary"
-          />
-        }
-        label="По возрастанию"
-      />
-      </ListItem>
-      <ListItem>
-      <FormControlLabel
-      control={
-        <SwitchRoll
-          checked={state.checkedB1}
-          onChange={handleSort('checkedB1','checkedB')}
-          value="checkedB1"
-          color="primary"
-        />
-      }
-      label="По убыванию"
-    />
-    </ListItem>
-          </Paper>
-          </List>
-        </Grid>
-        <Grid item xs={12}>
-        <Typography variant="h4">Критерии</Typography>
-          <Divider/>
-          <List>
-          <Paper className={classes.paper}>
-            <ListItem>
-            <FormControlLabel
-            control={
-              <Checkbox checked={state.checkedA} onChange={handleChange('checkedA')} value="checkedA" />
-              }
-              label="Дата"
-            />
-            </ListItem>
-            <ListItem>
-            <FormControlLabel
-              control={
-                <Checkbox checked={state.checkedA1} onChange={handleChange('checkedA1')} value="checkedA1" />
-              }
-              label="Статус"
-            />
-            </ListItem>
-            </Paper>
-          </List>
-        </Grid>
-          </Grid>
-      </Popover>
       <Popover
         id={user_id}
         className={classes.popoverWidth}
