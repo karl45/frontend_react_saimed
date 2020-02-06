@@ -20,7 +20,7 @@ const useStyles = makeStyles({
 
 const LoginModal = props => {
     const { open, onClose } = props
-    const [isDoctor, setIsDoctor] = React.useState('/LandingMedic');
+    const [isDoctor, setIsDoctor] = React.useState('/LandingAuth');
     const [email,setEmail] = React.useState('');
     const classes = useStyles()
 
@@ -29,7 +29,6 @@ const LoginModal = props => {
         if(email == 'doctor'){
             setIsDoctor("/LandingMedic")
             console.log(isDoctor)
-
         }
         else{
             setIsDoctor('/LandingAuth')

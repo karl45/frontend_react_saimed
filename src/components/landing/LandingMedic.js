@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from 'react'
 import clsx from 'clsx';
 import {Button} from  '@material-ui/core';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useEffect } from 'react';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
@@ -53,19 +54,30 @@ import {
 
 
 const useStyles = makeStyles(theme => ({
+  
   root: {
     display: 'flex',
   },
+  
   fab: {
     position: 'absolute',
     bottom: theme.spacing(2),
     right: theme.spacing(2)  
   },
-  gridbutton:{
-    height:'2vh'
+  IconSize:{
+    width:"20%",
+    height:"5vh"
+  },
+  IconAddSize:{
+    [theme.breakpoints.up('lg')]:{
+      fontSize:"5vw"
+    }
   },
   fabDelete:{
     backgroundColor:red[900],
+    width:'100%',
+    height:"5vh",
+    fontSize:"2vw",
     color:"white",
     '&:hover':{
       backgroundColor:"white",
@@ -74,7 +86,6 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('xs')]: {
       display:'none',
     }
-    
   },
   fabDelIcon:{
     backgroundColor:red[900],
@@ -86,22 +97,37 @@ const useStyles = makeStyles(theme => ({
     },
     [theme.breakpoints.down('xs')]: {
       display:'inline',
+      fontSize:'1.2vw'
     },
   },
   fabAdd:{
     position: 'absolute',
     bottom: theme.spacing(2),
     right: theme.spacing(2),
+    fontSize:"2vw",
     backgroundColor:blue[500],
     color:"white",
     '&:hover':{
       backgroundColor:"white",
       color:blue[500]
+    },
+    [theme.breakpoints.down('xs')]: {
+      right: theme.spacing(0),
+      width:'100%',
+      fontSize:"4vw",
+    },
+    [theme.breakpoints.up('lg')]:{
+      height:"5vh",
+      width:"30%"
     }
+   
   },
   fabEdit:{
     backgroundColor:"#3897ba",
     color:"white",
+    height:"5vh",
+    fontSize:"2vw",
+    width:'100%',
     '&:hover':{
       backgroundColor:"white",
       color:"#3897ba"
@@ -109,23 +135,26 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('xs')]: {
       display:'none',
     }
-  
   },
   fabEdIcon:{
     backgroundColor:"#3897ba",
     display:'none',
-    color:"white",
+    color:'white',
     '&:hover':{
       backgroundColor:"white",
       color:"#3897ba"
     },
     [theme.breakpoints.down('xs')]: {
       display:'inline',
+      fontSize:'1.2vw'
     },
   },
   fabDescription:{
     backgroundColor:"#1c8045",
     color:"white",
+    height:"5vh",
+    fontSize:"2vw",
+    width:'100%',
     '&:hover':{
       backgroundColor:"white",
       color:"#1c8045"
@@ -144,23 +173,30 @@ const useStyles = makeStyles(theme => ({
     },
     [theme.breakpoints.down('xs')]: {
       display:'inline',
+      fontSize:'1.2vw'
     },
   },
-
-  appBar: {
+popoverWidth:{
+  [theme.breakpoints.up('lg')]:{
+    fontSize:"2vw"
+  },
+   [theme.breakpoints.down('xs')]:{
+    fontSize:"3vw"
+  }
+},
+appBar: {
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
   },
-  
   alarmOn:{
     color:green[500],
-    fontSize:50,
+    fontSize:"10vw",
   },
    alarm:{
     color:yellow[700],
-    fontSize:50,
+    fontSize:"10vw",
    },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -168,24 +204,23 @@ const useStyles = makeStyles(theme => ({
   hide: {
     display: 'none',
   },
- 
- 
-  drawerHeader: {
-    display: 'flex',
-    alignItems: 'center',
-    padding: theme.spacing(0, 1),
-    ...theme.mixins.toolbar,
-    justifyContent: 'flex-end',
-  },
+  
   content: {
     flexGrow: 1,
-    paddingTop: theme.spacing(10),
-    paddingBottom:theme.spacing(10),
+    paddingTop:"7vh",
+    paddingBottom:"7vh",
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-
+    [theme.breakpoints.down('xs')]: {
+      paddingTop:"18vw",
+      paddingBottom:"18vw",
+    },
+    [theme.breakpoints.up('lg')]: {
+      paddingTop:"6vh",
+      paddingBottom:"6vh",
+    },
   },
   contentShift: {
     transition: theme.transitions.create('margin', {
@@ -194,17 +229,6 @@ const useStyles = makeStyles(theme => ({
     }),
     marginLeft: 0,
   },
-
-toolbar: {
-    transition: '0.3s',
-    paddingTop: '16px',
-    paddingBottom: '16px'
-},
-toolbarShrink: {
-    transition: '0.3s',
-    paddingTop: '0px',
-    paddingBottom: '0px'
-},
 scrollSpy: {
     display: 'flex'
 },
@@ -220,7 +244,10 @@ title: {
     lineHeight: '42px',
     whiteSpace: 'nowrap',
     flexGrow: '1',
-    color: 'white !important'
+    color: 'white !important',
+    [theme.breakpoints.up('xs')]: {
+      fontSize:"5vw",
+    }
 },
 titleShrinkSize: {
     transition: '0.3s',
@@ -235,10 +262,11 @@ typo:{
   fontSize:'5vw',
   color: theme.palette.text.primary,
 },
-
-
 IconDecription:{
-  marginRight: theme.spacing(1),
+  fontSize:"10vh",
+  [theme.breakpoints.up('xs')]: {
+  fontSize:"5vw",
+  }
 },
 navButton: {
     fontFamily: "'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';",
@@ -250,13 +278,13 @@ navButton: {
         color: "#fed136",
     }
 },
-
 }));
 
 
 const LandingMedic = props => {  
     
     const classes = useStyles();
+
     const [open, setOpen] = React.useState(false);
     const [scrolledDown, setScrolledDown] = useState(false);
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -268,7 +296,7 @@ const LandingMedic = props => {
       checkedB1:false
     });
     
-   
+  
     
     const handleUserClick=event=>{
       setuseranchEl(event.currentTarget);
@@ -291,10 +319,6 @@ const LandingMedic = props => {
             }
         })
     })
-
-  
- 
-  
     return (
       <div className={classes.root}>
         <CssBaseline />
@@ -315,12 +339,11 @@ const LandingMedic = props => {
               aria-haspopup="true"
               onClick={handleUserClick}
               color="inherit">
-              <AccountCircleIcon/>
+              <AccountCircleIcon className={classes.IconDecription}/>
             </IconButton>
           </Toolbar>
       <Popover
         id={user_id}
-        className={classes.popoverWidth}
         open={openUser}
         anchorEl={useranchEl}
         onClose={handleUserClose}
@@ -332,14 +355,15 @@ const LandingMedic = props => {
           vertical: 'top',
           horizontal: 'center',
         }}
+        className={classes.PopWidth}
       >
         <Grid item xs={12}>
           <List>
             <ListItem>
-            <Button href="#appointments">Редактировать</Button>
+            <Button href="#appointments" className={classes.popoverWidth}>Редактировать</Button>
             </ListItem>
             <ListItem>
-            <Button href="#appointments">Выйти</Button>
+            <Button href="#appointments" className={classes.popoverWidth}>Выйти</Button>
             </ListItem>
           </List>
         </Grid>
@@ -353,52 +377,51 @@ const LandingMedic = props => {
         <Typography className={classes.typo}>Ближайшие посещения</Typography>
           <List>
           <Paper>
-
           <ListItem>
           <ListItemIcon>
             <AlarmIcon className={classes.alarm}/>
           </ListItemIcon>
-          <ListItemText >
+          <ListItemText>
             <Grid container justify="center" alignItems="center" spacing={1}>
-            <Grid item xs={7}>
+            <Grid item xs={6}>
           <div className={classes.paper}>
            <h2>Бескожаев Бердыбек Бубульгумович</h2>
           </div>
         </Grid>
-        <Grid item xs={5}>
+        <Grid item xs={6} sm={6} md={6} >
           <Grid container spacing={2}>
-          <Grid item xs={4}>
+          <Grid item xs={4} sm={5} md={4} >
           <Link style = {{textDecoration:'none'}} to={"/MedPage"}>
             <Fab variant="extended" className={classes.fabEdit}>
-              <EditIcon className={classes.DescriptionIcon}/>
+              <EditIcon className={classes.IconSize}/>
               Принять
             </Fab>
           </Link>
           <Link style = {{textDecoration:'none'}} to={"/MedPage"}>
             <Fab size="small" className={classes.fabEdIcon}>
-              <EditIcon className={classes.DescriptionIcon}/>
-             
+              <EditIcon variant="extended" />
+             Принять
             </Fab>
           </Link>
-          
-          
           </Grid>
-           <Grid item xs={4}>
+           <Grid item xs={4} sm={5} md={4} >
             <Fab variant="extended" className={classes.fabDelete}>
-              <DeleteIcon className={classes.DescriptionIcon}/>
+              <DeleteIcon className={classes.IconSize}/>
               Отменить
             </Fab>
             <Fab size="small" className={classes.fabDelIcon}>
-              <DeleteIcon className={classes.DescriptionIcon}/>
+              <DeleteIcon variant="extended"/>
+                Отменить
             </Fab>
             </Grid>
-           <Grid item xs={4}>
+           <Grid item xs={4} sm={5} md={4} >
             <Fab variant="extended" className={classes.fabDescription}>
-              <DescriptionIcon className={classes.DescriptionIcon}/>
+              <DescriptionIcon className={classes.IconSize}/>
               Отложить
             </Fab>
             <Fab size="small" className={classes.fabDescIcon}>
-              <DescriptionIcon className={classes.DescriptionIcon}/>
+              <DescriptionIcon variant="extended"/>
+              Отложить
             </Fab>
           </Grid> 
             </Grid>
@@ -409,46 +432,54 @@ const LandingMedic = props => {
         </ListItem>
         </Paper>
         </List>
-      
-
           <Typography className={classes.typo}>Прошлые посещения</Typography>
-          {/* <List>
+          <List>
           <Paper>
-
           <ListItem>
           <ListItemIcon>
             <AlarmOnIcon className={classes.alarmOn}/>
-            
           </ListItemIcon>
           <ListItemText >
-            <Grid container spacing={1}>
-            <Grid item xs={7}>
+            <Grid container container justify="center" alignItems="center" spacing={1}>
+            <Grid item xs={6}>
           <div className={classes.paper}>
            <h2>Рахимбеков Лугатип Разпинуевич</h2>
           </div>
         </Grid>
-        <Grid item xs={5}>
-
+        <Grid item xs={6}>
+        <Grid container spacing={2}>
+          <Grid item xs={5} sm={5}>
             <Fab variant="extended" className={classes.fabEdit}>
-              <EditIcon className={classes.DescriptionIcon}/>
-              Редактировать
+              <EditIcon className={classes.IconSize}/>
+              Изменить
             </Fab>
+             <Fab size="small"  className={classes.fabEdIcon}>
+              <EditIcon  />
+              Изменить
+            </Fab>
+          </Grid>
+          <Grid item xs={4} sm={5}>
             <Fab variant="extended" className={classes.fabDelete}>
-              <DeleteIcon className={classes.DescriptionIcon}/>
+              <DeleteIcon className={classes.IconSize}/>
               Удалить
             </Fab>
-
+            <Fab size="small" className={classes.fabDelIcon}>
+              <DeleteIcon variant="extended" />
+              Удалить
+            </Fab>
+          </Grid>
+        </Grid>
         </Grid>
             </Grid>
            
           </ListItemText>
         </ListItem>
         </Paper>
-        </List> */}
+        </List>
         <Fab variant="extended" className={classes.fabAdd} >
-            <AddIcon  className={classes.DescriptionIcon}/>
+            <AddIcon  className={classes.IconAddSize}/>
             Добавить запись
-          </Fab>
+        </Fab>
         </main>
       </div>
     );
