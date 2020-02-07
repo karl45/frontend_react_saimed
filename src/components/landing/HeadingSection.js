@@ -3,13 +3,13 @@ import { CardMedia, Grid, Button, Typography } from '@material-ui/core'
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import backgroundImage from '../../img/background.jpg'
 import DatePickSection from './DatePickSection'
+import '../../backimg.css'
 
 const useStyles = makeStyles(theme => createStyles({
     introText: {
         textAlign: 'center',
-        paddingTop: '300px',
-        paddingBottom: '200px',
-        color: theme.palette.primary.dark
+        color: theme.palette.primary.dark,
+   
     },
     introLeadIn: {
         fontSize: '40px',
@@ -25,20 +25,19 @@ const useStyles = makeStyles(theme => createStyles({
         marginBottom: '50px',
         fontFamily: "'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'"
     },
-
+   
 }))
 
 const HeadingSection = props => {
     const classes = useStyles()
     return (
-        <CardMedia id="page-top" image={backgroundImage}>
-            <Grid container>
-                <Grid item md={6}>
+        <CardMedia className="bg">
+            <Grid container className={classes.backimg}>
+                <Grid item md={6} >
                     <div className={classes.introText}>
-                        <Typography className={classes.introLeadIn}>Кабинет детского невропатолога</Typography>
-                        <Typography className={classes.introHeading}>SAIMED</Typography>
-                        <DatePickSection />
-                        {/* <Button className={classes.button} onClick={props.onClick} variant="contained" color="primary">Записаться онлайн</Button> */}
+                      {/* <Typography className={classes.introLeadIn}>Кабинет детского невропатолога</Typography> */}
+                        {/* <Typography className={classes.introHeading}>SAIMED</Typography> */}
+                          {/* <DatePickSection /> */}
                     </div>
                 </Grid>
             </Grid>

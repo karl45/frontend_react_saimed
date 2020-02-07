@@ -32,7 +32,6 @@ const LoginModal = props => {
         }
         else{
             setIsDoctor('/LandingAuth')
-    
         }
     }
   const handleSubmit = () => {

@@ -2,6 +2,7 @@ import React, { Fragment, useState } from 'react'
 import clsx from 'clsx';
 import {Button} from  '@material-ui/core';
 import { useEffect } from 'react';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import PropTypes from 'prop-types';
@@ -53,30 +54,43 @@ import {
 
 
 const useStyles = makeStyles(theme => ({
-  
+
   root: {
     display: 'flex',
   },
-  
+
   fab: {
     position: 'absolute',
     bottom: theme.spacing(2),
-    right: theme.spacing(2)  
+    right: theme.spacing(2)
   },
   IconSize:{
-    width:"20%",
-    height:"5vh"
+    width:"3vh",
+    height:"5vh",
+  },
+  IconEditSize:{
+    width:"3vh",
+    height:"5vh",
+    [theme.breakpoints.down('sm')]:{
+      width:"50%",
+    }
   },
   IconAddSize:{
+    width:"3vw",
+    height:"4vw",
     [theme.breakpoints.up('lg')]:{
-      fontSize:"5vw"
+      fontSize:"5vw",
+    },
+    [theme.breakpoints.down('xs')]:{
+      width:"18vw",
+      height:"10vw"
     }
   },
   fabDelete:{
     backgroundColor:red[900],
     width:'100%',
     height:"5vh",
-    fontSize:"2vw",
+    fontSize:"1.5vw",
     color:"white",
     '&:hover':{
       backgroundColor:"white",
@@ -103,7 +117,7 @@ const useStyles = makeStyles(theme => ({
     position: 'absolute',
     bottom: theme.spacing(2),
     right: theme.spacing(2),
-    fontSize:"2vw",
+    fontSize:"1.5vw",
     backgroundColor:blue[500],
     color:"white",
     '&:hover':{
@@ -119,13 +133,13 @@ const useStyles = makeStyles(theme => ({
       height:"5vh",
       width:"30%"
     }
-   
+
   },
   fabEdit:{
     backgroundColor:"#3897ba",
     color:"white",
     height:"5vh",
-    fontSize:"2vw",
+    fontSize:"1.5vw",
     width:'100%',
     '&:hover':{
       backgroundColor:"white",
@@ -152,7 +166,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor:"#1c8045",
     color:"white",
     height:"5vh",
-    fontSize:"2vw",
+    fontSize:"1.5vw",
     width:'100%',
     '&:hover':{
       backgroundColor:"white",
@@ -172,12 +186,12 @@ const useStyles = makeStyles(theme => ({
     },
     [theme.breakpoints.down('xs')]: {
       display:'inline',
-      fontSize:'1.2vw'
+      fontSize:'1vw'
     },
   },
 popoverWidth:{
   [theme.breakpoints.up('lg')]:{
-    fontSize:"2vw"
+    fontSize:"1vw"
   },
    [theme.breakpoints.down('xs')]:{
     fontSize:"3vw"
@@ -203,11 +217,11 @@ appBar: {
   hide: {
     display: 'none',
   },
-  
+
   content: {
     flexGrow: 1,
-    paddingTop:"7vh",
-    paddingBottom:"7vh",
+    paddingTop:"7vw",
+    paddingBottom:"7vw",
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -216,10 +230,15 @@ appBar: {
       paddingTop:"18vw",
       paddingBottom:"18vw",
     },
-    [theme.breakpoints.up('lg')]: {
-      paddingTop:"6vh",
-      paddingBottom:"6vh",
+    [theme.breakpoints.up('sm')]: {
+      paddingTop:"10vw",
+      paddingBottom:"10vw",
     },
+    [theme.breakpoints.up('lg')]: {
+      paddingTop:"9vw",
+      paddingBottom:"9vw",
+    },
+
   },
   contentShift: {
     transition: theme.transitions.create('margin', {
@@ -254,8 +273,9 @@ titleShrinkSize: {
 },
 paper: {
   textAlign: 'center',
-  fontSize:'2vw',
+  fontSize:'1.5vw',
   color: theme.palette.text.primary,
+  display:"flex-wrap",
 },
 typo:{
   fontSize:'5vw',
@@ -281,10 +301,13 @@ navButton: {
 
 
 
-const LandingAuth = props => {  
-    
+const LandingAuth = props => {
+
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
+    const theme = useTheme();
+    const matches = useMediaQuery('(min-height:800px) and (min-width:480px)');
+    const [SizeBut,SetSizeBut] = React.useState("medium");
     const [scrolledDown, setScrolledDown] = useState(false);
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [useranchEl,setuseranchEl] = React.useState(null);
@@ -294,22 +317,22 @@ const LandingAuth = props => {
       checkedB:false,
       checkedB1:false
     });
-    
+
     const handleChange = name => event => {
       setState({ ...state, [name]: event.target.checked });
     };
     const handleSort=(name_check,name_uncheck)=>event=>{
       setState({...state,[name_check]:event.target.checked,[name_uncheck]:false});
     }
-    
+
     const handleClick = event => {
       setAnchorEl(event.currentTarget);
     };
-  
+
     const handleClose = () => {
       setAnchorEl(null);
     };
-    
+
     const handleUserClick=event=>{
       setuseranchEl(event.currentTarget);
     }
@@ -320,7 +343,7 @@ const LandingAuth = props => {
     const id = openFilter ? 'simple-popover' : undefined;
     const openUser = Boolean(useranchEl);
     const user_id = openUser ? 'simple-popover' : undefined;
-    
+
     useEffect(() => {
         window.addEventListener('scroll', () => {
             const isTop = window.scrollY < 100
@@ -329,12 +352,22 @@ const LandingAuth = props => {
             } else {
                 setScrolledDown(true)
             }
+        });
+        window.addEventListener('load',()=>{
+          if(!matches)
+          {
+             SetSizeBut("small");
+          }
+          else{
+            SetSizeBut("medium");
+          }
+        
         })
     })
 
-  
- 
-  
+
+
+
     return (
       <div className={classes.root}>
         <CssBaseline />
@@ -345,7 +378,6 @@ const LandingAuth = props => {
           })}
         >
           <Toolbar>
-            
             <Typography className={classNames(classes.title, scrolledDown ? classes.titleShrinkSize : '')}>
               SAIMED
             </Typography>
@@ -354,7 +386,7 @@ const LandingAuth = props => {
               aria-haspopup="true"
               onClick={handleUserClick}
               color="inherit">
-              <AccountCircleIcon />
+              <AccountCircleIcon className={classes.IconDecription}/>
             </IconButton>
           </Toolbar>
 
@@ -372,7 +404,7 @@ const LandingAuth = props => {
           horizontal: 'center',
         }}
       >
-        
+
         <Grid item xs={12}>
           <List>
             <ListItem>
@@ -381,101 +413,117 @@ const LandingAuth = props => {
             <ListItem>
             <Button href="#appointments" className={classes.popoverWidth}>Выйти</Button>
             </ListItem>
-
           </List>
         </Grid>
       </Popover>
         </AppBar>
-  
+
     <main
           className={clsx(classes.content, {
             [classes.contentShift]: open,
           })}>
-        <Typography variant="h2">Ближайшие посещения</Typography>
-          <List>
+        <Typography className={classes.typo}>Ближайшие посещения</Typography>
+        <List>
           <Paper>
           <ListItem>
           <ListItemIcon>
             <AlarmIcon className={classes.alarm}/>
           </ListItemIcon>
           <ListItemText >
-            <Grid container justify="center" alignItems="center" spacing={1}>
-            <Grid item xs={6}>
+            <Grid container justify="center" alignItems="center" spacing={2}>
+            <Grid item xs={4}>
           <div className={classes.paper}>
            <h2>Понедельник 12 октября, 09:00</h2>
           </div>
         </Grid>
-        <Grid item xs={6} sm={6} md={6}>
-        <Grid container spacing={2}>
-          <Grid item xs={4} sm={5} md={4} >
+        <Grid item xs={7}>
+        <Grid container justify="center" alignItems="center" spacing={2}>
+          <Grid item xs={4} sm={3} md={3}>
+            <Link style={{textDecoration:"none"}} to={"/MedPage"}>
             <Fab variant="extended" className={classes.fabEdit}>
-              <EditIcon className={classes.IconSize}/>
-                Изменить
+              <EditIcon className={classes.IconEditSize}/>
+              Изменить
             </Fab>
-            <Fab size="small" className={classes.fabEdIcon}>
-              <EditIcon />
-                Изменить
+             <Fab size={SizeBut} className={classes.fabEdIcon}>
+              <EditIcon  />
+              Изменить
             </Fab>
+            </Link>
           </Grid>
-          <Grid item xs={4} sm={5} md={4} >
+          <Grid item xs={4} sm={4} md={4}>
             <Fab variant="extended" className={classes.fabDelete}>
               <DeleteIcon className={classes.IconSize}/>
               Удалить
             </Fab>
-            <Fab size="small" className={classes.fabDelIcon}>
+            <Fab size={SizeBut} className={classes.fabDelIcon}>
               <DeleteIcon />
               Удалить
             </Fab>
           </Grid>
-          <Grid item xs={4} sm={6} md={4}>
-            <Fab variant="extended" className={classes.fabDescription}>
+          <Grid item xs={4} sm={5} md={5}>
+          <Fab variant="extended" className={classes.fabDescription}>
               <DescriptionIcon className={classes.IconSize}/>
               Заключение
             </Fab>
-            <Fab size="small" className={classes.fabDescIcon}>
-              <DescriptionIcon />
-              Заключение
+            <Fab size={SizeBut} className={classes.fabDescIcon}>
+              <DescriptionIcon />Заключение
             </Fab>
           </Grid>
         </Grid>
+        </Grid>
             </Grid>
-           </Grid>
           </ListItemText>
         </ListItem>
         </Paper>
         </List>
-      
-
-          <Typography variant="h2">Прошлые посещения</Typography>
+          <Typography className={classes.typo}>Прошлые посещения</Typography>
           <List>
           <Paper>
-
           <ListItem>
           <ListItemIcon>
             <AlarmOnIcon className={classes.alarmOn}/>
-            
           </ListItemIcon>
           <ListItemText >
-            <Grid container justify="center" alignItems="center" spacing={1}>
-            <Grid item xs={6}>
+            <Grid container justify="center" alignItems="center" spacing={2}>
+            <Grid item xs={4}>
           <div className={classes.paper}>
-           <h2>Понедельник 12 октября, 09:00</h2>
+           <h2>Четверг 8 октября, 17:00</h2>
           </div>
         </Grid>
-        <Grid item xs={5}>
-
+        <Grid item xs={7}>
+        <Grid container justify="center" alignItems="center" spacing={2}>
+          <Grid item xs={4} sm={3} md={3}>
+            <Link style={{textDecoration:"none"}} to={"/MedPage"}>
             <Fab variant="extended" className={classes.fabEdit}>
-              <EditIcon className={classes.DescriptionIcon}/>
+              <EditIcon className={classes.IconEditSize}/>
               Изменить
             </Fab>
+             <Fab size={SizeBut} className={classes.fabEdIcon}>
+              <EditIcon  />
+              Изменить
+            </Fab>
+            </Link>
+          </Grid>
+          <Grid item xs={4} sm={4} md={4}>
             <Fab variant="extended" className={classes.fabDelete}>
-              <DeleteIcon className={classes.DescriptionIcon}/>
+              <DeleteIcon className={classes.IconSize}/>
               Удалить
             </Fab>
-            <Fab variant="extended" className={classes.fabDescription}>
-              <DescriptionIcon className={classes.DescriptionIcon}/>
+            <Fab size={SizeBut} className={classes.fabDelIcon}>
+              <DeleteIcon />
+              Удалить
+            </Fab>
+          </Grid>
+          <Grid item xs={4} sm={5} md={5}>
+          <Fab variant="extended" className={classes.fabDescription}>
+              <DescriptionIcon className={classes.IconSize}/>
               Заключение
             </Fab>
+            <Fab size={SizeBut} className={classes.fabDescIcon}>
+              <DescriptionIcon />Заключение
+            </Fab>
+          </Grid>
+        </Grid>
         </Grid>
             </Grid>
            
@@ -491,10 +539,10 @@ const LandingAuth = props => {
       </div>
     );
   }
-  
+
   LandingAuth.propTypes = {
     container: PropTypes.instanceOf(typeof Element === 'undefined' ? Object : Element),
   };
-  
+
 
 export default LandingAuth

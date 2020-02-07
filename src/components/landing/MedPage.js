@@ -230,20 +230,6 @@ const MedPage = props => {
       checkedB1:false
     });
     
-    const handleChange = name => event => {
-      setState({ ...state, [name]: event.target.checked });
-    };
-    const handleSort=(name_check,name_uncheck)=>event=>{
-      setState({...state,[name_check]:event.target.checked,[name_uncheck]:false});
-    }
-    
-    const handleClick = event => {
-      setAnchorEl(event.currentTarget);
-    };
-  
-    const handleClose = () => {
-      setAnchorEl(null);
-    };
     
     const handleUserClick=event=>{
       setuseranchEl(event.currentTarget);
@@ -340,7 +326,7 @@ const MedPage = props => {
               variant="outlined"
               fullWidth
               multiline
-              rows="5">
+              rows="10">
 
               </TextField>
               </Paper>
