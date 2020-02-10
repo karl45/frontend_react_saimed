@@ -7,7 +7,11 @@ const useStyles = makeStyles(theme => createStyles({
     section: {
         backgroundColor: '#f8f9fa',
         padding: '100px 0',
-        textAlign: 'center'
+        textAlign: 'center',
+        [theme.breakpoints.down('md')]:{
+            paddingTop:"50px",
+            width:"200vw",
+        },
     },
     textCenter: {
         textAlign: 'center'

@@ -1,8 +1,12 @@
 .bg {
   background-image: url("../src/img/background.jpg");
   height: 100vh;
-  width:200vw;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  }
+  @media only screen and (max-width:1024px){
+    .bg{
+      width:200vw;
+    }
   }

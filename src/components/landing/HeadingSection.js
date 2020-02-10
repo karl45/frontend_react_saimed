@@ -32,8 +32,8 @@ const HeadingSection = props => {
     const classes = useStyles()
     return (
         <CardMedia className="bg">
-            <Grid container className={classes.backimg}>
-                <Grid item md={6} >
+            <Grid container className={classes.introText} >
+                <Grid item xs={6} >
                     <div className={classes.introText}>
                       {/* <Typography className={classes.introLeadIn}>Кабинет детского невропатолога</Typography> */}
                         {/* <Typography className={classes.introHeading}>SAIMED</Typography> */}

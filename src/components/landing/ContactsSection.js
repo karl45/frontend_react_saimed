@@ -9,7 +9,11 @@ const useStyles = makeStyles(theme => createStyles({
         backgroundColor: '#2978A0',
         color: 'white',
         padding: '100px 0',
-        textAlign: 'center'
+        textAlign: 'center',
+        [theme.breakpoints.down('md')]:{
+            paddingTop:"50px",
+            width:"200vw",
+        },
     },
     sectionHeading: {
         textTransform: 'uppercase',
@@ -61,7 +65,7 @@ const ContactsSection = props => {
         <div id="contact" className={classes.section}>
             <Container>
                 <Grid container>
-                    <Grid item lg={4}>
+                    <Grid item xs={4} lg={4}>
                         <Typography variant="h4" className={classes.sectionHeading}>Контакты</Typography>
                         <Typography className={classes.addressInfo}>г. Алматы, <br/> ул. Манаса 34/1</Typography>
                         <Typography className={classes.phoneNumber}>+77877718877</Typography>
@@ -79,8 +83,8 @@ const ContactsSection = props => {
                             <FontAwesomeIcon icon={faDribbble} />
                         </a>
                     </Grid>
-                    <Grid item lg={8}>
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2906.778690465226!2d76.90769551576157!3d43.23509947913778!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3883692f027581ad%3A0x2426740f56437e63!2z0JzQtdC20LTRg9C90LDRgNC-0LTQvdGL0Lkg0YPQvdC40LLQtdGA0YHQuNGC0LXRgiDQuNC90YTQvtGA0LzQsNGG0LjQvtC90L3Ri9GFINGC0LXRhdC90L7Qu9C-0LPQuNC5!5e0!3m2!1sru!2skz!4v1578856976478!5m2!1sru!2skz" width="600" height="450" frameBorder="0" style={{border:'0'}} allowFullScreen=""></iframe>
+                    <Grid item xs={5} lg={8}>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2906.778690465226!2d76.90769551576157!3d43.23509947913778!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3883692f027581ad%3A0x2426740f56437e63!2z0JzQtdC20LTRg9C90LDRgNC-0LTQvdGL0Lkg0YPQvdC40LLQtdGA0YHQuNGC0LXRgiDQuNC90YTQvtGA0LzQsNGG0LjQvtC90L3Ri9GFINGC0LXRhdC90L7Qu9C-0LPQuNC5!5e0!3m2!1sru!2skz!4v1578856976478!5m2!1sru!2skz"  frameBorder="0" style={{border:'0'}} allowFullScreen=""></iframe>
                     </Grid>
                 </Grid>
             </Container>

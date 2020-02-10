@@ -1,11 +1,16 @@
 import React from 'react'
 import { makeStyles, createStyles } from '@material-ui/styles'
-import { Container, Typography, Button } from '@material-ui/core'
+import { Button } from '@material-ui/core'
+import { Container, Typography, Grid } from '@material-ui/core'
 
 const useStyles = makeStyles(theme => createStyles({
     section: {
         padding: '100px 0',
-        textAlign: 'center'
+        textAlign: 'center',
+        [theme.breakpoints.down('md')]:{
+            paddingTop:"50px",
+            width:"200vw",
+        }, 
     },
     sectionHeading: {
         textTransform: 'uppercase',
@@ -13,7 +18,10 @@ const useStyles = makeStyles(theme => createStyles({
         fontWeight: '700',
         marginTop: '0',
         marginBottom: '15px',
-        fontFamily: "'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'"
+        fontFamily: "'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'",
+        [theme.breakpoints.up('sm')]:{
+            fontSize: '2.5vw',
+        },
     },
     sectionSubheading: {
         fontSize: '16px',
@@ -21,13 +29,22 @@ const useStyles = makeStyles(theme => createStyles({
         fontStyle: 'italic',
         marginBottom: '65px',
         textTransform: 'none',
-        fontFamily: "'Droid Serif', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'"
+        fontFamily: "'Droid Serif', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'",
+        [theme.breakpoints.between('sm','md')]:{
+            marginBottom:"1vw"
+        },
+        [theme.breakpoints.up('sm')]:{
+         fontSize:"1.2vw"
+        }
     },
     button: {
         fontFamily: "'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'",
         fontWeight: '700',
         fontSize: '18px',
-        padding: '20px 40px'
+        padding: '20px 40px',
+        [theme.breakpoints.up('sm')]:{
+            fontSize:"1.2vw"
+        }
     }
 }))
 
@@ -36,9 +53,19 @@ const OnlineAppointmentsSection = props => {
 
     return (
         <Container id="appointments" className={classes.section}>
-            <Typography variant="h2" className={classes.sectionHeading}>Онлайн запись</Typography>
-            <Typography variant="h3" className={classes.sectionSubheading}>Вы можете записаться на приём онлайн прямо сейчас.</Typography>
-            <Button className={classes.button} variant="contained" color="primary">Записаться онлайн</Button>
+            <Grid container alignItems="center" justify="center">
+                <Grid item xs={12}>
+            <Typography variant="h2" className={classes.sectionHeading}>
+                Онлайн запись
+            </Typography>
+            <Typography variant="h3" className={classes.sectionSubheading}>
+                Вы можете записаться на приём онлайн прямо сейчас.
+            </Typography> 
+            <Button className={classes.button} variant="contained" color="primary">
+                Записаться онлайн
+            </Button>
+            </Grid>
+            </Grid>
         </Container>
     )
 }
