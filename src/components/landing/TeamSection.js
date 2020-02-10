@@ -7,7 +7,11 @@ const useStyles = makeStyles(theme => createStyles({
     section: {
         backgroundColor: '#f8f9fa',
         padding: '100px 0',
-        textAlign: 'center'
+        textAlign: 'center',
+        [theme.breakpoints.down('md')]:{
+            paddingTop:"40px",
+            width:"200vw",
+        },
     },
     textCenter: {
         textAlign: 'center'
@@ -17,7 +21,15 @@ const useStyles = makeStyles(theme => createStyles({
         height: '225px',
         border: '7px solid rgba(0, 0, 0, 0.1)',
         borderRadius: '50%',
-        margin: 'auto'
+        margin: 'auto',
+        [theme.breakpoints.up('sm')]:{
+            width: '525px',
+            height: '525px',
+        },
+           [theme.breakpoints.up('lg')]:{
+            width: '325px',
+            height: '325px',
+        }
     },
     sectionHeading: {
         textTransform: 'uppercase',
@@ -25,24 +37,57 @@ const useStyles = makeStyles(theme => createStyles({
         fontWeight: '700',
         marginTop: '0',
         marginBottom: '15px',
-        fontFamily: "'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'"
+        fontFamily: "'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'",
+        [theme.breakpoints.up('sm')]:{
+            fontSize: '4.5vw',
+        },
+        [theme.breakpoints.up('lg')]:{
+            fontSize: '2.5vw',
+        },
     },
     sectionSubheading: {
         fontSize: '16px',
         fontWeight: '400',
         fontStyle: 'italic',
         textTransform: 'none',
-        fontFamily: "'Droid Serif', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'"
+        fontFamily: "'Droid Serif', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'",
+        [theme.breakpoints.between('sm','md')]:{
+            marginBottom:"1vw"
+        },
+        [theme.breakpoints.up('sm')]:{
+         fontSize:"4.2vw"
+        },
+        [theme.breakpoints.up('lg')]:{
+            fontSize:"1.2vw"
+           }
     },
     doctorIntro: {
         marginTop: '45px',
         marginBottom: '5px',
         fontSize: '1.5rem',
         fontWeight: '700',
-        fontFamily: "'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'"
+        fontFamily: "'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'",
+        [theme.breakpoints.between('sm','md')]:{
+            marginBottom:"1vw"
+        },
+        [theme.breakpoints.up('sm')]:{
+         fontSize:"5.2vw"
+        },
+        [theme.breakpoints.up('lg')]:{
+            fontSize:"1.2vw"
+        }
     },
     doctorInfo: {
-        fontFamily: "'Roboto Slab', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'"
+        fontFamily: "'Roboto Slab', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'",
+        [theme.breakpoints.between('sm','md')]:{
+            marginBottom:"1vw"
+        },
+        [theme.breakpoints.up('sm')]:{
+         fontSize:"5.2vw"
+        },
+        [theme.breakpoints.up('lg')]:{
+            fontSize:"1.2vw"
+        }
     }
 }))
 
