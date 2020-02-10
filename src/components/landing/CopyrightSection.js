@@ -8,7 +8,11 @@ const useStyles = makeStyles(theme => createStyles({
         paddingBottom: '1.5rem',
         paddingTop: '1.5rem',
         color: 'white',
-        textAlign: 'center'
+        textAlign: 'center',
+        [theme.breakpoints.down('md')]:{
+            paddingTop:"50px",
+            width:"200vw",
+        },
     },
     copyrightText: {
         fontSize: '90%',

@@ -78,13 +78,14 @@ const useStyles = makeStyles(theme => ({
   IconAddSize:{
     width:"3vw",
     height:"4vw",
-    [theme.breakpoints.up('lg')]:{
-      fontSize:"5vw",
-    },
+    
     [theme.breakpoints.down('xs')]:{
       width:"18vw",
       height:"10vw"
-    }
+    },
+    [theme.breakpoints.up('lg')]:{
+      fontSize:"5vw",
+    },
   },
   fabDelete:{
     backgroundColor:red[900],
@@ -124,15 +125,16 @@ const useStyles = makeStyles(theme => ({
       backgroundColor:"white",
       color:blue[500]
     },
+    
+    [theme.breakpoints.up('lg')]:{
+      height:"5vh",
+      width:"30%"
+    },
     [theme.breakpoints.down('xs')]: {
       right: theme.spacing(0),
       width:'100%',
       fontSize:"4vw",
     },
-    [theme.breakpoints.up('lg')]:{
-      height:"5vh",
-      width:"30%"
-    }
 
   },
   fabEdit:{
@@ -190,12 +192,14 @@ const useStyles = makeStyles(theme => ({
     },
   },
 popoverWidth:{
+ 
+  
+  [theme.breakpoints.down('xs')]:{
+    fontSize:"3vw"
+  },
   [theme.breakpoints.up('lg')]:{
     fontSize:"1vw"
   },
-   [theme.breakpoints.down('xs')]:{
-    fontSize:"3vw"
-  }
 },
 appBar: {
     transition: theme.transitions.create(['margin', 'width'], {
@@ -226,17 +230,18 @@ appBar: {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    [theme.breakpoints.down('xs')]: {
-      paddingTop:"18vw",
-      paddingBottom:"18vw",
+    [theme.breakpoints.up('lg')]: {
+      paddingTop:"9vw",
+      paddingBottom:"9vw",
     },
     [theme.breakpoints.up('sm')]: {
       paddingTop:"10vw",
       paddingBottom:"10vw",
     },
-    [theme.breakpoints.up('lg')]: {
-      paddingTop:"9vw",
-      paddingBottom:"9vw",
+   
+    [theme.breakpoints.down('xs')]: {
+      paddingTop:"18vw",
+      paddingBottom:"18vw",
     },
 
   },
