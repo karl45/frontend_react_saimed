@@ -9,8 +9,8 @@ const useStyles = makeStyles(theme => createStyles({
         padding: '100px 0',
         textAlign: 'center',
         [theme.breakpoints.down('md')]:{
-            paddingTop:"40px",
-            width:"200vw",
+            paddingTop:"50px",
+            width:"198vw",
         },
     },
     textCenter: {
@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => createStyles({
         height: '225px',
         border: '7px solid rgba(0, 0, 0, 0.1)',
         borderRadius: '50%',
-        margin: 'auto',
+         margin: 'auto',
         [theme.breakpoints.up('sm')]:{
             width: '525px',
             height: '525px',

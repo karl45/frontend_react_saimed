@@ -5,6 +5,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core'
 import { blue, lightBlue } from '@material-ui/core/colors';
+import './backimg.css'
 
 const theme = createMuiTheme({
     palette: {
@@ -15,7 +16,7 @@ const theme = createMuiTheme({
 })
 
 ReactDOM.render(
-    <MuiThemeProvider theme={theme}>
+    <MuiThemeProvider theme={theme} >
         <App />
     </MuiThemeProvider>, 
     document.getElementById('root')

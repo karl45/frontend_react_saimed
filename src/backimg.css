@@ -10,3 +10,7 @@
       width:200vw;
     }
   }
+  .full_bg{
+    background: rgb(120,23,198);
+    background: linear-gradient(321deg, rgba(120,23,198,1) 29%, rgba(2,0,36,1) 100%);
+  }

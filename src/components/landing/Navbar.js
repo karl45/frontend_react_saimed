@@ -25,8 +25,7 @@ import MailIcon from '@material-ui/icons/Mail';
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
-    container: {
-    },
+  
     toolbar: {
         transition: '0.3s',
         paddingTop: '16px',
@@ -77,7 +76,8 @@ const useStyles = makeStyles(theme => ({
   appbar:{
     [theme.breakpoints.down('sm')]:{
     display:"none",
-    }
+    },
+    backgroundColor:"#26C6DA"
   },
   appBar: {
     transition: theme.transitions.create(['margin', 'width'], {

@@ -11,6 +11,8 @@ import Paper from '@material-ui/core/Paper';
 import { useEffect } from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Divider from '@material-ui/core/Divider';
+import '../../backimg.css'
+import Box from '@material-ui/core/Box';
 
 
 const useStyles = makeStyles(theme => ({
@@ -20,8 +22,8 @@ const useStyles = makeStyles(theme => ({
         [theme.breakpoints.down('md')]:{
             padding:"0",
             width:"200vw",
+        },
         textAlign: 'center',
-       
     },
     subContent:{
         [theme.breakpoints.up('sm')]:{
@@ -41,7 +43,7 @@ const useStyles = makeStyles(theme => ({
     },
     circle:{
         fontSize:"9vw",
-        color:primaryColor,
+        color:"#26C6DA",
         textAlign: 'center',
         [theme.breakpoints.between('xs','sm')]:{
             fontSize:"20vw",
@@ -102,7 +104,7 @@ const useStyles = makeStyles(theme => ({
         },
         [theme.breakpoints.up('lg')]:{
             fontSize:"1.2vw"
-           }
+           },
     },
     serviceHeading: {
         marginTop: '45px',
@@ -125,8 +127,8 @@ const useStyles = makeStyles(theme => ({
             fontSize: '1.5vw',
             marginTop: '3vw',
         },
-    }
-}))
+    },
+}));
 
 const primaryColor = "#2978A0"
 
@@ -179,8 +181,8 @@ const ServicesSection = props => {
       };
 
     return (
-        <div id="services" className={classes.section}>
-            <Container>
+        <div id="services"  className={classes.section}>
+            <Container >
                 <Grid container className={classes.grid} spacing={6}>
                     <Grid item xs={12}>
                         <Typography variant="h2" className={classes.sectionHeading}>Наши услуги</Typography>
@@ -211,11 +213,12 @@ const ServicesSection = props => {
                         </Typography>
                     </Grid>
                     <Grid item xs={4}>
+                    
                     <span className="fa-layers fa-fw fa-4x">
                         <FontAwesomeIcon icon={faCircle} className={classes.circle} transform={transformValue}/>
                         <FontAwesomeIcon icon={faSyringe} className={classes.inverseIcons} inverse={true} />
-                    </span>
-                        <Typography variant="h4" className={classes.serviceHeading}>Процедуры</Typography>
+                    </span>                        
+                    <Typography variant="h4" className={classes.serviceHeading}>Процедуры</Typography>
                         <Typography className={classes.subContent}>
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
                             Minima maxime quam architecto quo inventore harum ex magni, 
@@ -224,7 +227,6 @@ const ServicesSection = props => {
                     </Grid>
                 </Grid>
                 <Paper  className={classes.header}>
-
                 <Typography variant="h2" className={classes.sectionHeading}>
                     Наши услуги
                 </Typography>

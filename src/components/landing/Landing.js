@@ -7,6 +7,8 @@ import TeamSection from './TeamSection'
 import ContactsSection from './ContactsSection'
 import CopyrightSection from './CopyrightSection'
 import LoginModal from './LoginModal'
+import '../../backimg.css'
+
 
 const Landing = props => {  
     const [loginModalOpen, setLoginModalOpen] = useState(false)
@@ -15,16 +17,19 @@ const Landing = props => {
     const closeLoginModal = () => setLoginModalOpen(false)
 
     return (
-        <Fragment>
+        <div className="full_bg">
+        <Fragment >
             <Navbar openLoginModal={openLoginModal}/>
             <HeadingSection />
-            <ServicesSection />
+            <ServicesSection /> 
             <OnlineAppointmentsSection />
             <TeamSection />
             <ContactsSection />
-            <CopyrightSection />
-            <LoginModal open={loginModalOpen} onClose={closeLoginModal}/>
+            <CopyrightSection /> 
+             <LoginModal open={loginModalOpen} onClose={closeLoginModal}/>
         </Fragment>
+        </div>
+
     )
 }
 

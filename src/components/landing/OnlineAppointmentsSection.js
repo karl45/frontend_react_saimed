@@ -5,12 +5,14 @@ import { Container, Typography, Grid } from '@material-ui/core'
 
 const useStyles = makeStyles(theme => createStyles({
     section: {
+        color:"white",
         padding: '100px 0',
         textAlign: 'center',
         [theme.breakpoints.down('md')]:{
             paddingTop:"100px",
             width:"200vw",
         }, 
+        opacity:0.9
     },
     sectionHeading: {
         textTransform: 'uppercase',
@@ -53,7 +55,9 @@ const useStyles = makeStyles(theme => createStyles({
            },
            [theme.breakpoints.up('lg')]:{
                fontSize:"1.2vw"
-              }
+           },
+           background:" rgb(12,212,224)",
+           background: "linear-gradient(304deg, rgba(12,212,224,1) 0%, rgba(22,138,203,1) 39%)",
     }
 }))
 
