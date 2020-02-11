@@ -13,6 +13,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Divider from '@material-ui/core/Divider';
 import '../../backimg.css'
 import Box from '@material-ui/core/Box';
+import classNames from 'classnames';
 
 
 const useStyles = makeStyles(theme => ({
@@ -54,6 +55,13 @@ const useStyles = makeStyles(theme => ({
         [theme.breakpoints.down('xs')]:{
             fontSize:"30vw",
         },
+        border: "3px solid rgb(120,23,198)",
+        borderRadius:"100%",
+    },
+ 
+    bodr:{
+        border: "3px solid rgb(120,23,198)",
+        borderRadius:"100%",
     },
     inverseIcons:{
         fontSize:"5vw",
@@ -104,7 +112,7 @@ const useStyles = makeStyles(theme => ({
         },
         [theme.breakpoints.up('lg')]:{
             fontSize:"1.2vw"
-           },
+        },
     },
     serviceHeading: {
         marginTop: '45px',
@@ -153,23 +161,7 @@ const ServicesSection = props => {
     const [activeStep, setActiveStep] = React.useState(0);
     const [transformValue,setTransformValue] = React.useState('left-3');
     const maxSteps = tutorialSteps.length;
-    const matches_tablet = useMediaQuery(theme.breakpoints.between('xs','sm'));
-    const matches_large = useMediaQuery(theme.breakpoints.up('lg'));
-    useEffect(()=>{
-        window.addEventListener('load',()=>{
-            if(!matches_tablet)
-            {
-               setTransformValue("left-4");
-            }
-            else if(matches_large)
-            {
-                setTransformValue("left-5");
-            }
-            else{
-                setTransformValue("left-3");
-            }
-          })
-    });
+    
 
 
     const handleNext = () => {
@@ -183,14 +175,16 @@ const ServicesSection = props => {
     return (
         <div id="services"  className={classes.section}>
             <Container >
-                <Grid container className={classes.grid} spacing={6}>
+                <Grid container  className={classes.grid} spacing={6}>
                     <Grid item xs={12}>
                         <Typography variant="h2" className={classes.sectionHeading}>Наши услуги</Typography>
                         <Typography variant="h3" className={classes.sectionSubheading}>Lorem ipsum dolor sit amet consectetur.</Typography>
                     </Grid>
+
                     <Grid item xs={4}>
+                    <div className="fa-2x">
                     <span className="fa-layers fa-fw fa-4x">
-                        <FontAwesomeIcon icon={faCircle} className={classes.circle} transform={transformValue}/>
+                        <FontAwesomeIcon  icon={faCircle} className={classes.circle} />
                         <FontAwesomeIcon icon={faStethoscope} className={classes.inverseIcons} inverse={true} />
                     </span>
                         <Typography variant="h2" className={classes.serviceHeading}>Общий осмотр</Typography>
@@ -199,10 +193,15 @@ const ServicesSection = props => {
                             Minima maxime quam architecto quo inventore harum ex magni, 
                             dicta impedit.
                         </Typography>
+                        </div>
+
                     </Grid>
+
+                   
                     <Grid item xs={4}>
+                    <div className="fa-2x">
                     <span className="fa-layers fa-fw fa-4x">
-                         <FontAwesomeIcon icon={faCircle} className={classes.circle} transform={transformValue}/>
+                         <FontAwesomeIcon icon={faCircle} className={classes.circle}  />
                          <FontAwesomeIcon icon={faUserNurse} className={classes.inverseIcons} inverse={true}/> 
                     </span>
                         <Typography variant="h4" className={classes.serviceHeading}>Консультация</Typography>
@@ -211,11 +210,13 @@ const ServicesSection = props => {
                             Minima maxime quam architecto quo inventore harum ex magni, 
                             dicta impedit.
                         </Typography>
+                        </div>
                     </Grid>
+                   
                     <Grid item xs={4}>
-                    
+                    <div className="fa-2x">
                     <span className="fa-layers fa-fw fa-4x">
-                        <FontAwesomeIcon icon={faCircle} className={classes.circle} transform={transformValue}/>
+                        <FontAwesomeIcon icon={faCircle} className={classes.circle} />
                         <FontAwesomeIcon icon={faSyringe} className={classes.inverseIcons} inverse={true} />
                     </span>                        
                     <Typography variant="h4" className={classes.serviceHeading}>Процедуры</Typography>
@@ -224,6 +225,7 @@ const ServicesSection = props => {
                             Minima maxime quam architecto quo inventore harum ex magni, 
                             dicta impedit.
                         </Typography>
+                        </div>
                     </Grid>
                 </Grid>
                 <Paper  className={classes.header}>
@@ -241,8 +243,9 @@ const ServicesSection = props => {
                     </Button>
                     </Grid>
                 <Grid item xs={6}>
+                <div className="fa-2x">
                 <span className="fa-layers fa-fw fa-4x">
-                <FontAwesomeIcon icon={faCircle} className={classes.circle} transform="left-3"/>
+                <FontAwesomeIcon icon={faCircle} className={classes.circle}/>
                 <FontAwesomeIcon className={classes.inverseIcons} icon={tutorialSteps[activeStep].icon} inverse={true} />
                 </span>
 
@@ -264,13 +267,12 @@ const ServicesSection = props => {
                     variant="dots"
                     activeStep={activeStep}
                    />
+                   </div>
                 </Grid>
                 <Grid item xs={3}>
-
                 <Button onClick={handleNext} disabled={activeStep === maxSteps - 1}>
                 {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
                 </Button>  
-
                 </Grid>
                 </Grid>
                 

@@ -10,7 +10,7 @@ const useStyles = makeStyles(theme => createStyles({
         textAlign: 'center',
         [theme.breakpoints.down('md')]:{
             paddingTop:"50px",
-            width:"198vw",
+            width:"199vw",
         },
     },
     textCenter: {
