@@ -93,10 +93,10 @@ const useStyles = makeStyles(theme => createStyles({
 
     mapcharac:{
         width:"40vw",
-        height:"32vh",
+        height:"52vh",
         [theme.breakpoints.down('lg')]:{
             width:"50vw",
-            height:"42vh",
+            height:"100%",
         },
         [theme.breakpoints.down('md')]:{
             width:"90vw",

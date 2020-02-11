@@ -5,12 +5,13 @@ import doctorImage from '../../img/doctor.jpg'
 
 const useStyles = makeStyles(theme => createStyles({
     section: {
-        backgroundColor: '#f8f9fa',
+        background: "rgb(254,255,255)",
+        background: "linear-gradient(180deg, rgba(254,255,255,1) 0%, rgba(220,226,226,1) 37%, rgba(220,226,226,1) 59%, rgba(255,255,255,1) 100%)",
         padding: '100px 0',
         textAlign: 'center',
         [theme.breakpoints.down('md')]:{
             paddingTop:"50px",
-            width:"199vw",
+            width:"200vw",
         },
     },
     textCenter: {

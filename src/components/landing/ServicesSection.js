@@ -59,10 +59,7 @@ const useStyles = makeStyles(theme => ({
         borderRadius:"100%",
     },
  
-    bodr:{
-        border: "3px solid rgb(120,23,198)",
-        borderRadius:"100%",
-    },
+   
     inverseIcons:{
         fontSize:"5vw",
         textAlign: 'center',
@@ -159,9 +156,21 @@ const ServicesSection = props => {
     const classes = useStyles()
     const theme = useTheme();
     const [activeStep, setActiveStep] = React.useState(0);
-    const [transformValue,setTransformValue] = React.useState('left-3');
+    const [transformValue,setTransformValue] = React.useState('fa-2x');
     const maxSteps = tutorialSteps.length;
-    
+    const matches_large = useMediaQuery(theme.breakpoints.up('xl'));
+    useEffect(()=>{
+        window.addEventListener('load',()=>{
+
+            if(matches_large)
+            {
+                setTransformValue("fa-4x");
+            }
+            else{
+                setTransformValue("fa-2x");
+            }
+          })
+    });
 
 
     const handleNext = () => {
@@ -182,7 +191,7 @@ const ServicesSection = props => {
                     </Grid>
 
                     <Grid item xs={4}>
-                    <div className="fa-2x">
+                    <div className={transformValue}>
                     <span className="fa-layers fa-fw fa-4x">
                         <FontAwesomeIcon  icon={faCircle} className={classes.circle} />
                         <FontAwesomeIcon icon={faStethoscope} className={classes.inverseIcons} inverse={true} />
@@ -199,7 +208,7 @@ const ServicesSection = props => {
 
                    
                     <Grid item xs={4}>
-                    <div className="fa-2x">
+                    <div className={transformValue}>
                     <span className="fa-layers fa-fw fa-4x">
                          <FontAwesomeIcon icon={faCircle} className={classes.circle}  />
                          <FontAwesomeIcon icon={faUserNurse} className={classes.inverseIcons} inverse={true}/> 
@@ -214,7 +223,7 @@ const ServicesSection = props => {
                     </Grid>
                    
                     <Grid item xs={4}>
-                    <div className="fa-2x">
+                    <div className={transformValue}>
                     <span className="fa-layers fa-fw fa-4x">
                         <FontAwesomeIcon icon={faCircle} className={classes.circle} />
                         <FontAwesomeIcon icon={faSyringe} className={classes.inverseIcons} inverse={true} />
