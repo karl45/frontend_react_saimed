@@ -62,6 +62,9 @@ const useStyles = makeStyles(theme => createStyles({
         fontFamily: "'Droid Serif', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'",
        
     },
+    NoneDate:{
+      display:"none",
+    },
     xsWidth:{
       [theme.breakpoints.down('xs')]: {
           width:"200vw",
@@ -126,6 +129,7 @@ const HeadingSection = props => {
     const handleStepChange = step => {
       setActiveStep(step);
     };
+    
     return (
           <div className={classes.root}>
       <AutoPlaySwipeableViews
@@ -181,20 +185,6 @@ const HeadingSection = props => {
         }
       /> */}
     </div>
-        // <CardMedia className="bg">
-        //     <Grid container className={classes.introText} justify="flex-start" alignItems="center" >
-        //         <Grid  item xs={6}>
-        //         <Typography className={classes.introHeading}>
-        //                   SAIMED
-        //               </Typography>
-        //               <Typography className={classes.introLeadIn}>
-        //                   Кабинет детского 
-        //                   невропатолога
-        //               </Typography>
-        //                   <DatePickSection />
-        //         </Grid>
-        //     </Grid>
-        // </CardMedia>
     )
 }
 

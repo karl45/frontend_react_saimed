@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Typography, Grid } from '@material-ui/core'
+import { Container, Typography, Grid, Grow } from '@material-ui/core'
 import MobileStepper from '@material-ui/core/MobileStepper'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStethoscope, faCircle, faUserNurse, faSyringe } from '@fortawesome/free-solid-svg-icons'
@@ -14,6 +14,8 @@ import Divider from '@material-ui/core/Divider';
 import '../../backimg.css'
 import Box from '@material-ui/core/Box';
 import classNames from 'classnames';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Switch from '@material-ui/core/Switch';
 
 
 const useStyles = makeStyles(theme => ({
@@ -46,6 +48,8 @@ const useStyles = makeStyles(theme => ({
         fontSize:"9vw",
         color:"#26C6DA",
         textAlign: 'center',
+        border: "3px solid rgb(120,23,198)",
+        borderRadius:"100%",
         [theme.breakpoints.between('xs','sm')]:{
             fontSize:"20vw",
         },
@@ -55,8 +59,7 @@ const useStyles = makeStyles(theme => ({
         [theme.breakpoints.down('xs')]:{
             fontSize:"30vw",
         },
-        border: "3px solid rgb(120,23,198)",
-        borderRadius:"100%",
+        
     },
  
    
@@ -116,6 +119,7 @@ const useStyles = makeStyles(theme => ({
         fontSize: '10vw',
         fontWeight: '700',
         fontFamily: "'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'",
+        
         [theme.breakpoints.up('sm')]:{
             fontSize: '5vw',
         },
@@ -159,6 +163,11 @@ const ServicesSection = props => {
     const [transformValue,setTransformValue] = React.useState('fa-2x');
     const maxSteps = tutorialSteps.length;
     const matches_large = useMediaQuery(theme.breakpoints.up('xl'));
+    const [checked, setChecked] = React.useState(false);
+
+    const handleChange = () => {
+      setChecked(prev => !prev);
+    };
     useEffect(()=>{
         window.addEventListener('load',()=>{
 
@@ -170,6 +179,21 @@ const ServicesSection = props => {
                 setTransformValue("fa-2x");
             }
           })
+          if(!checked){
+          window.addEventListener('scroll',()=>{
+              try{
+            var bottom_of_object = document.getElementById("ic").getBoundingClientRect().top + document.getElementById("ic").offsetHeight;
+            var bottom_of_window = window.pageYOffset + window.innerHeight;
+            
+            if( bottom_of_window > bottom_of_object ){
+                setChecked(true);                    
+            }
+        }
+        catch{
+
+        }
+          })
+          }
     });
 
 
@@ -189,9 +213,9 @@ const ServicesSection = props => {
                         <Typography variant="h2" className={classes.sectionHeading}>Наши услуги</Typography>
                         <Typography variant="h3" className={classes.sectionSubheading}>Lorem ipsum dolor sit amet consectetur.</Typography>
                     </Grid>
-
                     <Grid item xs={4}>
-                    <div className={transformValue}>
+                    <Grow in={checked}>
+                    <div className={transformValue} id="ic">
                     <span className="fa-layers fa-fw fa-4x">
                         <FontAwesomeIcon  icon={faCircle} className={classes.circle} />
                         <FontAwesomeIcon icon={faStethoscope} className={classes.inverseIcons} inverse={true} />
@@ -203,11 +227,12 @@ const ServicesSection = props => {
                             dicta impedit.
                         </Typography>
                         </div>
-
+                        </Grow>
                     </Grid>
-
+                   
                    
                     <Grid item xs={4}>
+                    <Grow in={checked}>
                     <div className={transformValue}>
                     <span className="fa-layers fa-fw fa-4x">
                          <FontAwesomeIcon icon={faCircle} className={classes.circle}  />
@@ -220,9 +245,11 @@ const ServicesSection = props => {
                             dicta impedit.
                         </Typography>
                         </div>
+                        </Grow>
                     </Grid>
                    
                     <Grid item xs={4}>
+                    <Grow in={checked}>
                     <div className={transformValue}>
                     <span className="fa-layers fa-fw fa-4x">
                         <FontAwesomeIcon icon={faCircle} className={classes.circle} />
@@ -235,6 +262,7 @@ const ServicesSection = props => {
                             dicta impedit.
                         </Typography>
                         </div>
+                        </Grow>
                     </Grid>
                 </Grid>
                 <Paper  className={classes.header}>

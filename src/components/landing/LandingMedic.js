@@ -220,24 +220,26 @@ appBar: {
 
   content: {
     flexGrow: 1,
-    paddingTop:"7vw",
-    paddingBottom:"7vw",
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
+    [theme.breakpoints.down('xl')]:{
+      paddingTop:"5vw",
+      paddingBottom:"5vw",
+    },
+    [theme.breakpoints.down('lg')]: {
+      paddingTop:"5vw",
+      paddingBottom:"5vw",
+    },
+    [theme.breakpoints.down('sm')]: {
+      paddingTop:"10vw",
+      paddingBottom:"10vw",
+    },
     [theme.breakpoints.down('xs')]: {
       paddingTop:"18vw",
       paddingBottom:"18vw",
     },
-    [theme.breakpoints.up('sm')]: {
-      paddingTop:"10vw",
-      paddingBottom:"10vw",
-    },
-    [theme.breakpoints.up('lg')]: {
-      paddingTop:"9vw",
-      paddingBottom:"9vw",
-    },
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
 
   },
   contentShift: {

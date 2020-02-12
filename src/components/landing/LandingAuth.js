@@ -147,6 +147,9 @@ const useStyles = makeStyles(theme => ({
       backgroundColor:"white",
       color:"#3897ba"
     },
+    [theme.breakpoints.down('sm')]: {
+      fontSize:"1.2vw",
+    },
     [theme.breakpoints.down('xs')]: {
       display:'none',
     }
@@ -192,8 +195,6 @@ const useStyles = makeStyles(theme => ({
     },
   },
 popoverWidth:{
- 
-  
   [theme.breakpoints.down('xs')]:{
     fontSize:"3vw"
   },
@@ -221,28 +222,30 @@ appBar: {
   hide: {
     display: 'none',
   },
-
   content: {
     flexGrow: 1,
-    paddingTop:"7vw",
-    paddingBottom:"7vw",
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    [theme.breakpoints.up('lg')]: {
-      paddingTop:"9vw",
-      paddingBottom:"9vw",
+    [theme.breakpoints.down('xl')]:{
+      paddingTop:"5vw",
+      paddingBottom:"5vw",
     },
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.down('lg')]: {
+      paddingTop:"5vw",
+      paddingBottom:"5vw",
+    },
+    [theme.breakpoints.down('sm')]: {
       paddingTop:"10vw",
       paddingBottom:"10vw",
     },
-   
     [theme.breakpoints.down('xs')]: {
       paddingTop:"18vw",
       paddingBottom:"18vw",
     },
+    
+
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
 
   },
   contentShift: {
@@ -275,6 +278,9 @@ title: {
 titleShrinkSize: {
     transition: '0.3s',
     fontSize: '1.25em',
+    [theme.breakpoints.up('xs')]: {
+      fontSize:"3vw",
+    }
 },
 paper: {
   textAlign: 'center',
@@ -443,35 +449,26 @@ const LandingAuth = props => {
         </Grid>
         <Grid item xs={7}>
         <Grid container justify="center" alignItems="center" spacing={2}>
-          <Grid item xs={4} sm={3} md={3}>
-            <Link style={{textDecoration:"none"}} to={"/MedPage"}>
-            <Fab variant="extended" className={classes.fabEdit}>
-              <EditIcon className={classes.IconEditSize}/>
-              Изменить
-            </Fab>
-             <Fab size={SizeBut} className={classes.fabEdIcon}>
-              <EditIcon  />
-              Изменить
-            </Fab>
-            </Link>
-          </Grid>
+         
           <Grid item xs={4} sm={4} md={4}>
-            <Fab variant="extended" className={classes.fabDelete}>
-              <DeleteIcon className={classes.IconSize}/>
-              Удалить
+
+          <Fab variant="extended" className={classes.fabEdit}>
+            <EditIcon className={classes.IconEditSize}/>
+              Изменить
             </Fab>
-            <Fab size={SizeBut} className={classes.fabDelIcon}>
-              <DeleteIcon />
-              Удалить
+            <Fab size={SizeBut} className={classes.fabEdIcon}>
+            <EditIcon />
+              Изменить
             </Fab>
           </Grid>
           <Grid item xs={4} sm={5} md={5}>
-          <Fab variant="extended" className={classes.fabDescription}>
-              <DescriptionIcon className={classes.IconSize}/>
-              Заключение
+          <Fab variant="extended" className={classes.fabDelete}>
+          <DeleteIcon className={classes.IconSize}/>
+              Удалить
             </Fab>
-            <Fab size={SizeBut} className={classes.fabDescIcon}>
-              <DescriptionIcon />Заключение
+            <Fab size={SizeBut} className={classes.fabDelIcon}>
+            <DeleteIcon />
+              Удалить
             </Fab>
           </Grid>
         </Grid>
@@ -497,18 +494,6 @@ const LandingAuth = props => {
         </Grid>
         <Grid item xs={7}>
         <Grid container justify="center" alignItems="center" spacing={2}>
-          <Grid item xs={4} sm={3} md={3}>
-            <Link style={{textDecoration:"none"}} to={"/MedPage"}>
-            <Fab variant="extended" className={classes.fabEdit}>
-              <EditIcon className={classes.IconEditSize}/>
-              Изменить
-            </Fab>
-             <Fab size={SizeBut} className={classes.fabEdIcon}>
-              <EditIcon  />
-              Изменить
-            </Fab>
-            </Link>
-          </Grid>
           <Grid item xs={4} sm={4} md={4}>
             <Fab variant="extended" className={classes.fabDelete}>
               <DeleteIcon className={classes.IconSize}/>
