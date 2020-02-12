@@ -17,18 +17,19 @@ const Landing = props => {
     const closeLoginModal = () => setLoginModalOpen(false)
 
     return (
-        <div className="full_bg">
+        
         <Fragment >
             <Navbar openLoginModal={openLoginModal}/>
             <HeadingSection />
+            <div className="full_bg">
             <ServicesSection /> 
             <OnlineAppointmentsSection />
             <TeamSection />
             <ContactsSection />
             <CopyrightSection /> 
+            </div>
              <LoginModal open={loginModalOpen} onClose={closeLoginModal}/>
         </Fragment>
-        </div>
 
     )
 }
