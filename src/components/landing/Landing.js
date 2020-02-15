@@ -8,6 +8,7 @@ import ContactsSection from './ContactsSection'
 import CopyrightSection from './CopyrightSection'
 import LoginModal from './LoginModal'
 import '../../backimg.css'
+import InstagramSection from './InstagramSection'
 
 
 const Landing = props => {  
@@ -25,6 +26,7 @@ const Landing = props => {
             <ServicesSection /> 
             <OnlineAppointmentsSection />
             <TeamSection />
+            <InstagramSection/>
             <ContactsSection />
             <CopyrightSection /> 
             </div>

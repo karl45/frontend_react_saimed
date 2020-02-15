@@ -15,9 +15,6 @@ import { autoPlay } from 'react-swipeable-views-utils';
 import { deepPurple } from '@material-ui/core/colors';
 import { cyan } from '@material-ui/core/colors';
 
-const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
-
-
 
 const useStyles = makeStyles(theme => createStyles({
     root: {
@@ -66,7 +63,7 @@ const useStyles = makeStyles(theme => createStyles({
       display:"none",
     },
     xsWidth:{
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('md')]: {
           width:"200vw",
       },
     },
@@ -112,8 +109,9 @@ const HeadingSection = props => {
         textClass:'',
         just:""
       },
-    
     ];
+
+   
     const theme = useTheme();
     const [activeStep, setActiveStep] = React.useState(0);
     const maxSteps = tutorialSteps.length;
@@ -132,19 +130,9 @@ const HeadingSection = props => {
     
     return (
           <div className={classes.root}>
-      <AutoPlaySwipeableViews
-        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-        index={activeStep}
-        onChangeIndex={handleStepChange}
-        enableMouseEvents
-        className={classes.xsWidth}
-      >
-        {tutorialSteps.map((step, index) => (
-          <div key={step.label}>
-            {Math.abs(activeStep - index) <= 2 ? (
-            <CardMedia className={step.class} src={step.imgPath} alt={step.label} >
-            <Grid container xs={12} className={classes.introText} justify={step.just} alignItems="center" >
-                 <Grid className={step.textClass} item xs={6}>
+            <CardMedia className={tutorialSteps[activeStep].class} src={tutorialSteps[activeStep].imgPath} alt={tutorialSteps[activeStep].label} >
+            <Grid container className={classes.introText} justify={tutorialSteps[activeStep].just} alignItems="center" >
+                 <Grid className={tutorialSteps[activeStep].textClass} item xs={6}>
                  <Typography className={classes.introHeading}>
                  {tutorialSteps[activeStep].heading}
                   </Typography>
@@ -154,36 +142,7 @@ const HeadingSection = props => {
                   {tutorialSteps[activeStep].button}
                  </Grid>
              </Grid>
-               </CardMedia>
-            ) : null}
-          </div>
-        ))}
-      </AutoPlaySwipeableViews>
-      {/* <Grid container xs={12}>
-       <Grid item xs={6}>
-      <Paper className={classes.header}>
-        <Typography>{tutorialSteps[activeStep].label}</Typography>
-      </Paper>
-      </Grid>
-      </Grid> */}
-      {/* <MobileStepper
-        steps={maxSteps}
-        position="static"
-        variant="text"
-        activeStep={activeStep}
-        nextButton={
-          <Button size="small" onClick={handleNext} disabled={activeStep === maxSteps - 1}>
-            Next
-            {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
-          </Button>
-        }
-        backButton={
-          <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
-            {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
-            Back
-          </Button>
-        }
-      /> */}
+             </CardMedia>
     </div>
     )
 }

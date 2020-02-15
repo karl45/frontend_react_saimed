@@ -79,7 +79,8 @@ const useStyles = makeStyles(theme => ({
     width:"3vw",
     height:"4vw",
     [theme.breakpoints.up('lg')]:{
-      fontSize:"5vw",
+      width:"2vw",
+    height:"3vw",
     },
     [theme.breakpoints.down('xs')]:{
       width:"18vw",
@@ -114,9 +115,6 @@ const useStyles = makeStyles(theme => ({
     },
   },
   fabAdd:{
-    position: 'absolute',
-    bottom: theme.spacing(2),
-    right: theme.spacing(2),
     fontSize:"1.5vw",
     backgroundColor:blue[500],
     color:"white",
@@ -131,7 +129,7 @@ const useStyles = makeStyles(theme => ({
     },
     [theme.breakpoints.up('lg')]:{
       height:"5vh",
-      width:"30%"
+      width:"20%"
     }
 
   },
@@ -252,6 +250,9 @@ appBar: {
 scrollSpy: {
     display: 'flex'
 },
+paperDistance:{
+  paddingBottom:"2vw"
+},
 title: {
     transition: '0.3s',
     fontFamily: "'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';",
@@ -267,6 +268,9 @@ title: {
     color: 'white !important',
     [theme.breakpoints.up('xs')]: {
       fontSize:"5vw",
+    },
+    [theme.breakpoints.up('lg')]: {
+      fontSize:"3vw",
     }
 },
 titleShrinkSize: {
@@ -287,6 +291,9 @@ IconDecription:{
   fontSize:"10vh",
   [theme.breakpoints.up('xs')]: {
   fontSize:"5vw",
+  },
+  [theme.breakpoints.up('lg')]: {
+    fontSize:"3vw",
   }
 },
 navButton: {
@@ -353,11 +360,9 @@ const LandingMedic = props => {
           })}
         >
           <Toolbar>
-            
             <Typography className={classNames(classes.title, scrolledDown ? classes.titleShrinkSize : '')}>
               SAIMED
             </Typography>
-            
             <IconButton edge="end"
               aria-label="account of current user"
               aria-haspopup="true"
@@ -400,7 +405,61 @@ const LandingMedic = props => {
           })}>
         <Typography className={classes.typo}>Ближайшие посещения</Typography>
         <List>
-          <Paper>
+          <Paper >
+          <ListItem>
+          <ListItemIcon>
+            <AlarmIcon className={classes.alarm}/>
+          </ListItemIcon>
+          <ListItemText >
+            <Grid container justify="center" alignItems="center" spacing={2}>
+            <Grid item xs={4}>
+          <div className={classes.paper}>
+           <h2>Рахимбеков Лугатипы Разпинуевич</h2>
+          </div>
+        </Grid>
+        <Grid item xs={7}>
+        <Grid container justify="center" alignItems="center" spacing={2}>
+          <Grid item xs={4} sm={3} md={3}>
+            <Link style={{textDecoration:"none"}} to={"/MedPage"}>
+            <Fab variant="extended" className={classes.fabEdit}>
+              <EditIcon className={classes.IconEditSize}/>
+              Принять
+            </Fab>
+             <Fab size={SizeBut} className={classes.fabEdIcon}>
+              <EditIcon  />
+              Принять
+            </Fab>
+            </Link>
+          </Grid>
+          <Grid item xs={4} sm={4} md={4}>
+            <Fab variant="extended" className={classes.fabDelete}>
+              <DeleteIcon className={classes.IconSize}/>
+              Отменить
+            </Fab>
+            <Fab size={SizeBut} className={classes.fabDelIcon}>
+              <DeleteIcon />
+              Отменить
+            </Fab>
+          </Grid>
+          <Grid item xs={4} sm={5} md={5}>
+          <Fab variant="extended" className={classes.fabDescription}>
+              <DescriptionIcon className={classes.IconSize}/>
+              Отложить
+            </Fab>
+            <Fab size={SizeBut} className={classes.fabDescIcon}>
+              <DescriptionIcon />Отложить
+            </Fab>
+          </Grid>
+        </Grid>
+        </Grid>
+            </Grid>
+          </ListItemText>
+        </ListItem>
+        </Paper>
+
+          <Divider/>
+
+        <Paper >
           <ListItem>
           <ListItemIcon>
             <AlarmIcon className={classes.alarm}/>
@@ -452,6 +511,8 @@ const LandingMedic = props => {
           </ListItemText>
         </ListItem>
         </Paper>
+
+
         </List>
           <Typography className={classes.typo}>Прошлые посещения</Typography>
           <List>
@@ -491,11 +552,56 @@ const LandingMedic = props => {
           </Grid>
         </Grid>
         </Grid>
+        
+          </Grid>
+           
+          </ListItemText>
+        </ListItem>
+        </Paper>
+          <Divider/>
+        <Paper>
+          <ListItem>
+          <ListItemIcon>
+            <AlarmOnIcon className={classes.alarmOn}/>
+          </ListItemIcon>
+          <ListItemText >
+            <Grid container container justify="center" alignItems="center" spacing={2}>
+            <Grid item xs={5}>
+          <div className={classes.paper}>
+           <h2>Рахимбеков Лугатип Разпинуевич</h2>
+          </div>
+        </Grid>
+        <Grid item xs={7}>
+        <Grid container justify="center" alignItems="center" spacing={2}>
+          <Grid item xs={4} sm={4} md={4}>
+            <Fab variant="extended" className={classes.fabEdit}>
+              <EditIcon className={classes.IconSize}/>
+              Изменить
+            </Fab>
+             <Fab size={SizeBut} className={classes.fabEdIcon}>
+              <EditIcon  />
+              Изменить
+            </Fab>
+          </Grid>
+          <Grid item xs={4} sm={3} md={3}>
+            <Fab variant="extended" className={classes.fabDelete}>
+              <DeleteIcon className={classes.IconEditSize}/>
+              Удалить
+            </Fab>
+            <Fab size={SizeBut} className={classes.fabDelIcon}>
+              <DeleteIcon  />
+              Удалить
+            </Fab>
+          </Grid>
+        </Grid>
+        </Grid>
+        
             </Grid>
            
           </ListItemText>
         </ListItem>
         </Paper>
+
         </List>
         <Fab variant="extended" className={classes.fabAdd} >
             <AddIcon  className={classes.IconAddSize}/>
