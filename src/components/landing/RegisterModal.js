@@ -15,22 +15,22 @@ const useStyles = makeStyles({
     }
 })
 
-const LoginModal = props => {
+const RegisterModal = props => {
     const history = useHistory()
 
+    const { open, onClose } = props
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
-    
+
     const [error, setError] = React.useState(null);
     const [isErrorOpen, setIsErrorOpen] = React.useState(false);
-    
-    const classes = useStyles()
 
-    const { open, onClose, openRegisterModal } = props
+    const classes = useStyles()
 
     const handleSubmit = async () => {
         try {
-            const token = await AuthService.login(email, password)
+            const token = await AuthService.register(email, password)
+
             localStorage.setItem('token', token)
             history.push('/cabinet')
         } catch (err) {
@@ -40,18 +40,13 @@ const LoginModal = props => {
         }
     }
 
-    const openRegistration = () => {
-        onClose()
-        openRegisterModal()
-    }
-
     const handleCloseError = () => {
         setIsErrorOpen(false)
     }
     
     return (
         <Dialog open={open} onClose={onClose} aria-labelledby="form-dialog-title">
-            <DialogTitle id="form-dialog-title" className={classes.dialogTitle}>Войти в кабинет</DialogTitle>
+            <DialogTitle id="form-dialog-title" className={classes.dialogTitle}>Регистрация</DialogTitle>
             <DialogContent>
                 { isErrorOpen && error != null && 
                     <Snackbar open={isErrorOpen} autoHideDuration={6000} onClose={handleCloseError} anchorOrigin={{vertical: 'top', horizontal: 'right'}} >
@@ -76,12 +71,11 @@ const LoginModal = props => {
                 />
             </DialogContent>
             <DialogActions>
-                
-            <Button onClick={openRegistration} color="primary">
-                Зарегистрироваться
+            <Button onClick={onClose} color="primary">
+                Отмена
             </Button>
             <Button onClick={handleSubmit} color="primary">
-                Войти
+                Зарегистрироваться
             </Button>
          </DialogActions>
      
@@ -90,4 +84,4 @@ const LoginModal = props => {
 }
 
   
-export default LoginModal
+export default RegisterModal

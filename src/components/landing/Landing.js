@@ -8,13 +8,17 @@ import ContactsSection from './ContactsSection'
 import CopyrightSection from './CopyrightSection'
 import LoginModal from './LoginModal'
 import '../../backimg.css'
+import RegisterModal from './RegisterModal'
 
 
 const Landing = props => {  
     const [loginModalOpen, setLoginModalOpen] = useState(false)
+    const [registerModalOpen, setRegisterModalOpen] = useState(false)
     
     const openLoginModal = () => setLoginModalOpen(true)
     const closeLoginModal = () => setLoginModalOpen(false)
+    const openRegisterModal = () => setRegisterModalOpen(true)
+    const closeRegisterModal = () => setRegisterModalOpen(false)
 
     return (
         
@@ -22,13 +26,14 @@ const Landing = props => {
             <Navbar openLoginModal={openLoginModal}/>
             <HeadingSection />
             <div className="full_bg">
-            <ServicesSection /> 
-            <OnlineAppointmentsSection />
-            <TeamSection />
-            <ContactsSection />
-            <CopyrightSection /> 
+                <ServicesSection /> 
+                <OnlineAppointmentsSection />
+                <TeamSection />
+                <ContactsSection />
+                <CopyrightSection /> 
             </div>
-             <LoginModal open={loginModalOpen} onClose={closeLoginModal}/>
+             <LoginModal open={loginModalOpen} onClose={closeLoginModal} openRegisterModal={openRegisterModal} />
+             <RegisterModal open={registerModalOpen} onClose={closeRegisterModal}/>
         </Fragment>
 
     )
