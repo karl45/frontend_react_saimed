@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button, List, ListItem, Grid, Container, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
-import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
-import DateFnsUtils from '@date-io/date-fns';
+import { DatePicker } from '@material-ui/pickers';
 import PatientService from '../../service/PatientService';
 import dateFormat from 'dateformat'
 import { useHistory } from 'react-router-dom';
@@ -57,14 +56,14 @@ const AppointmentPage = props => {
                 
                 <Grid item xs={12}  md={6}>
                     <Typography className={classes.subheading}>Выберите дату:</Typography>
-                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                        <DatePicker value={selectedDate} autoOk
-                            orientation="landscape"
-                            variant="static"
-                            openTo="date"
-                            onChange={handleDateChange}
-                        />
-                    </MuiPickersUtilsProvider>
+                    <DatePicker value={selectedDate} 
+                        autoOk
+                        disablePast
+                        orientation="landscape"
+                        variant="static"
+                        openTo="date"
+                        onChange={handleDateChange}
+                    />
                 </Grid>
                 <Grid item xs={12} md={6}>
                     <Typography className={classes.subheading}>Выберите время:</Typography>

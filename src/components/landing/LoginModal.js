@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Dialog from '@material-ui/core/Dialog'
 import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
@@ -7,7 +7,7 @@ import { TextField, Button, Snackbar } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import AuthService from '../../service/AuthService'
 import { useHistory } from "react-router-dom"
-import Alert from '@material-ui/lab/Alert';
+import { AlertContext } from '../../context/AlertContext'
 
 const useStyles = makeStyles({
     dialogTitle: {
@@ -17,12 +17,10 @@ const useStyles = makeStyles({
 
 const LoginModal = props => {
     const history = useHistory()
+    const { showError } = useContext(AlertContext)
 
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
-    
-    const [error, setError] = React.useState(null);
-    const [isErrorOpen, setIsErrorOpen] = React.useState(false);
     
     const classes = useStyles()
 
@@ -34,9 +32,7 @@ const LoginModal = props => {
             localStorage.setItem('token', token)
             history.push('/cabinet')
         } catch (err) {
-            console.error(`Error: ${err}`)
-            setError(err)
-            setIsErrorOpen(true)
+            showError(err)
         }
     }
 
@@ -44,22 +40,11 @@ const LoginModal = props => {
         onClose()
         openRegisterModal()
     }
-
-    const handleCloseError = () => {
-        setIsErrorOpen(false)
-    }
     
     return (
         <Dialog open={open} onClose={onClose} aria-labelledby="form-dialog-title">
             <DialogTitle id="form-dialog-title" className={classes.dialogTitle}>Войти в кабинет</DialogTitle>
             <DialogContent>
-                { isErrorOpen && error != null && 
-                    <Snackbar open={isErrorOpen} autoHideDuration={6000} onClose={handleCloseError} anchorOrigin={{vertical: 'top', horizontal: 'right'}} >
-                        <Alert onClose={handleCloseError} severity="error" variant="filled">
-                            {error}
-                        </Alert>
-                    </Snackbar>
-                }
                 <TextField
                     margin="dense"
                     label="E-mail"

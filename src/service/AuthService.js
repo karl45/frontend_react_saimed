@@ -1,4 +1,4 @@
-const SERVER_URL = 'http://localhost:8080'
+const SERVER_URL = process.env.REACT_APP_SERVER_URL
 const LOGIN_URL = SERVER_URL + '/api/auth/login'
 const REGISTER_URL = SERVER_URL + '/api/auth/register'
 

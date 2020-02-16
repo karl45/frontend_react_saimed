@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Container, Grid, Typography, Paper, Button, Card } from "@material-ui/core";
+import { Container, Grid, Typography, Card } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
-import FutureAppointmentItem from "./FutureAppointmentItem";
-import PastAppointmentItem from "./PastAppointmentItem";
-import PatientService from "../../service/PatientService";
+import DoctorFutureAppointmentItem from "./DoctorFutureAppointmentItem";
+import DoctorPastAppointmentItem from "./DoctorPastAppointmentItem";
+import DoctorService from "../../service/DoctorService";
 
 const useStyles = makeStyles(theme => ({
     subheading: {
@@ -18,14 +18,14 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-const AppointmentsList = props => {
+const DoctorAppointmentsList = props => {
     const classes = useStyles()
     const [futureAppointments, setFutureAppointments] = useState([])
     const [pastAppointments, setPastAppointments] = useState([])
     
     const fetchData = async () => {
         try {
-            const data = await PatientService.getMyAppointments()
+            const data = await DoctorService.todayAppointments()
             setFutureAppointments(
                 data.filter(a => a.status != 'FINISHED')
             )
@@ -43,12 +43,23 @@ const AppointmentsList = props => {
 
     return (
         <Container>
-            <Typography className={classes.subheading}>Ваши записи:</Typography>
+            <Typography className={classes.subheading}>Записи:</Typography>
             <Grid container spacing={1}>
                 {
                     futureAppointments.length > 0 ? futureAppointments.map(a =>
                         <Grid item xs={12} key={a.id}>
-                            <FutureAppointmentItem date={a.date} startTime={a.startTime} endTime={a.endTime} appointmentId={a.id} onCancel={fetchData}/>
+                            <DoctorFutureAppointmentItem 
+                                date={a.date} 
+                                startTime={a.startTime}
+                                endTime={a.endTime} 
+                                appointmentId={a.appointmentId} 
+                                userId={a.userId}
+                                patientName={a.patientName}
+                                patientPhoneNumber={a.patientPhoneNumber}
+                                patientBirthDate={a.patientBirthDate}
+                                onCancel={fetchData}
+                                onSaveMedicalReport={fetchData}
+                            />
                         </Grid>
                     ) :
                     <Grid item xs={12}>
@@ -63,7 +74,12 @@ const AppointmentsList = props => {
                 {
                     pastAppointments.length > 0 ? pastAppointments.map(a =>
                         <Grid item xs={12} key={a.id}>
-                            <PastAppointmentItem date={a.date} startTime={a.startTime} endTime={a.endTime} appointmentId={a.id} />
+                            <DoctorPastAppointmentItem 
+                                date={a.date} 
+                                startTime={a.startTime} 
+                                endTime={a.endTime} 
+                                appointmentId={a.appointmentId} 
+                            />
                         </Grid>
                     ) :
                     <Grid item xs={12}>
@@ -77,4 +93,4 @@ const AppointmentsList = props => {
     )
 }
 
-export default AppointmentsList
+export default DoctorAppointmentsList

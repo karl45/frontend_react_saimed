@@ -50,7 +50,7 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-const CabinetAppBar = props => {
+const DoctorCabinetAppBar = props => {
     const classes = useStyles()
     const history = useHistory()
 
@@ -76,11 +76,11 @@ const CabinetAppBar = props => {
             <Container>
                 <Toolbar>
                     <Typography className={classes.title}>SAIMED</Typography>
-                    <Link to='/cabinet' className={classes.navLink}>
-                        <Button className={classes.navButton}>Мои записи</Button>
+                    <Link to='/admin' className={classes.navLink}>
+                        <Button className={classes.navButton}>Записи</Button>
                     </Link>
-                    <Link to='/cabinet/makeAppointment' className={classes.navLink}>
-                        <Button className={classes.navButton}>Записаться</Button>
+                    <Link to='/admin/generateAppointments' className={classes.navLink}>
+                        <Button className={classes.navButton}>Генерация записей</Button>
                     </Link>
                     <div className={classes.flexGrow}></div>
                     <IconButton
@@ -127,4 +127,4 @@ const CabinetAppBar = props => {
     )
 }
 
-export default CabinetAppBar
+export default DoctorCabinetAppBar

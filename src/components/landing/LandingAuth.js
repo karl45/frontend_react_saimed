@@ -27,7 +27,6 @@ import DescriptionIcon from "@material-ui/icons/Description";
 import AddIcon from "@material-ui/icons/Add";
 import { green, blue, red, yellow } from "@material-ui/core/colors";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import AppointmentsList from "../patientCabinet/AppointmentsList";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -379,7 +378,6 @@ const PatientCabinet = props => {
         </Popover>
       </AppBar>
 
-      <AppointmentsList />
     </div>
   );
 };

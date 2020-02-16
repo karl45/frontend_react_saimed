@@ -1,28 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { Grid, Typography, Button, Card } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import dateFormat from 'dateformat'
-import PatientService from "../../service/PatientService";
+import MedicalReportModal from "./MedicalReportModal";
 
 const useStyles = makeStyles(theme => ({
     appointmentContainer: {
-        padding: '15px',
-        marginBottom: '10px'
+        padding: '15px'
     }
 }))
 
-const FutureAppointmentItem = props => {
+const DoctorPastAppointmentItem = props => {
     const classes = useStyles()
+    const [medicalReportOpen, setMedicalReportOpen] = useState(false)
+
     const { date, startTime, endTime, appointmentId, onCancel } = props
 
-    const cancelAppointment = async () => {
-        try {
-            await PatientService.cancelAppointment(appointmentId)
-            onCancel()
-        } catch (err) {
-            console.error(err)
-        }
-    }
+    const openMedicalReport = () => setMedicalReportOpen(true)
+    const closeMedicalReport = () => setMedicalReportOpen(false)
 
     return (
         <Card  className={classes.appointmentContainer}>
@@ -31,11 +26,19 @@ const FutureAppointmentItem = props => {
                     <Typography>{dateFormat(date, 'dddd dd mmmm')}, {dateFormat(startTime, 'HH:MM')} - {dateFormat(endTime, 'HH:MM')}</Typography>
                 </Grid>
                 <Grid item>
-                    <Button variant="outlined" onClick={cancelAppointment}>Отменить</Button>
+                    <Button variant="outlined" onClick={openMedicalReport}>Заключение</Button>
                 </Grid>
             </Grid>
+            <MedicalReportModal
+                open={medicalReportOpen}
+                onClose={closeMedicalReport}
+                appointmentId={appointmentId}
+            />
         </Card>
     );
 };
 
-export default FutureAppointmentItem;
+export default DoctorPastAppointmentItem;
+
+
+

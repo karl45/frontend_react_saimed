@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
-import AppointmentsList from './AppointmentsList'
-import CabinetAppBar from './CabinetAppBar'
+import React from 'react'
+import PatientCabinetAppBar from './PatientCabinetAppBar'
 import { makeStyles } from '@material-ui/styles'
 import { Route } from 'react-router-dom'
 import AppointmentPage from './AppointmentPage'
+import PatientAppointmentsList from './PatientAppointmentsList'
+import AuthRoute from '../shared/AuthRoute'
 
 const useStyles = makeStyles(theme => ({
     background: {
@@ -16,13 +17,13 @@ const PatientCabinet = props => {
 
     return (
         <div className={classes.background}>
-            <CabinetAppBar />
-            <Route exact path='/cabinet'>
-                <AppointmentsList />
-            </Route>
-            <Route exact path='/cabinet/makeAppointment'>
+            <PatientCabinetAppBar />
+            <AuthRoute exact path='/cabinet' redirectUrl='/'>
+                <PatientAppointmentsList />
+            </AuthRoute>
+            <AuthRoute exact path='/cabinet/makeAppointment' redirectUrl='/'>
                 <AppointmentPage />
-            </Route>
+            </AuthRoute>
         </div>
     )
 }
