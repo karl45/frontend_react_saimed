@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { CardMedia, Grid, Button, Typography } from '@material-ui/core'
 import { makeStyles, createStyles, useTheme } from '@material-ui/core/styles';
-import backgroundImage from '../../img/8.JPG'
+import backgroundImage from '../../img/7.JPG'
 import backgroundImage2 from '../../img/2.JPG'
 import backgroundImage3 from '../../img/3.JPG'
 import DatePickSection from './DatePickSection'
@@ -15,10 +15,6 @@ import { autoPlay } from 'react-swipeable-views-utils';
 import { deepPurple } from '@material-ui/core/colors';
 import { cyan } from '@material-ui/core/colors';
 
-const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
-
-
-
 const useStyles = makeStyles(theme => createStyles({
     root: {
         flexGrow: 1,
@@ -29,6 +25,18 @@ const useStyles = makeStyles(theme => createStyles({
         paddingLeft: theme.spacing(4),
         backgroundColor: theme.palette.background.default,
       },
+      button: {
+        color:"white",
+        fontFamily: "'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'",
+        fontWeight: '700',
+        fontSize: '18px',
+        padding: '20px 40px',
+        border: "1px solid white",
+        "&:hover": {
+          backgroundColor: "white",
+          color: deepPurple[300]
+        },
+    },
       img: {
         height: "80vh",
         display: 'block',
@@ -79,40 +87,27 @@ const useStyles = makeStyles(theme => createStyles({
         paddingBottom:theme.spacing(4),
         lineHeight: '75px',
         fontFamily: "'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'",    },
-   
 }))
 
 const HeadingSection = props => {
     const classes = useStyles()
+
+    const { openLoginModal } = props
+
     const tutorialSteps = [
       {
         label:'Кабинет детского невропатолога',
         heading:'SAIMED',
         class:'bg',
         imgPath:backgroundImage,
-        button:<DatePickSection />,
+        button:
+        <Button  className={classes.button} onClick={openLoginModal}>
+          Записаться онлайн
+        </Button>
+        ,
         textClass:classes.textback,
-        just:"flex-start",
+        just:"center",
       },
-      {
-        label: 'Здоровье пациента для нас на первом месте',
-        heading:'МЫ ПОМОЖЕМ ВАМ',
-        class:'bg2',
-        imgPath:backgroundImage2,
-        button:'',
-        textClass:classes.textback1,
-        just:"center"
-      },
-      {
-        label: '',
-        heading:'',
-        class:'bg3',
-        imgPath:backgroundImage3,
-        button:'',
-        textClass:'',
-        just:""
-      },
-    
     ];
     const theme = useTheme();
     const [activeStep, setActiveStep] = React.useState(0);
@@ -132,41 +127,28 @@ const HeadingSection = props => {
     
     return (
           <div className={classes.root}>
-      <AutoPlaySwipeableViews
-        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-        index={activeStep}
-        onChangeIndex={handleStepChange}
-        enableMouseEvents
-        className={classes.xsWidth}
-      >
-        {tutorialSteps.map((step, index) => (
-          <div key={step.label}>
-            {Math.abs(activeStep - index) <= 2 ? (
-            <CardMedia className={step.class} src={step.imgPath} alt={step.label} >
-            <Grid container xs={12} className={classes.introText} justify={step.just} alignItems="center" >
-                 <Grid className={step.textClass} item xs={6}>
+          <CardMedia className={tutorialSteps[activeStep].class} src={tutorialSteps[activeStep].imgPath} alt={tutorialSteps[activeStep].label} >
+            <Grid container className={classes.introText} justify={tutorialSteps[activeStep].just} alignItems="center" >
+                 <Grid className={tutorialSteps[activeStep].textClass} item xs={6}>
                  <Typography className={classes.introHeading}>
                  {tutorialSteps[activeStep].heading}
-                  </Typography>
-                  <Typography className={classes.introLeadIn}>
+                 </Typography>
+                 <Typography className={classes.introLeadIn}>
                   {tutorialSteps[activeStep].label}
-                  </Typography>
+                 </Typography>
                   {tutorialSteps[activeStep].button}
                  </Grid>
              </Grid>
-               </CardMedia>
-            ) : null}
-          </div>
-        ))}
-      </AutoPlaySwipeableViews>
-      {/* <Grid container xs={12}>
+          </CardMedia>
+       </div>
+      /* <Grid container xs={12}>
        <Grid item xs={6}>
       <Paper className={classes.header}>
         <Typography>{tutorialSteps[activeStep].label}</Typography>
       </Paper>
       </Grid>
-      </Grid> */}
-      {/* <MobileStepper
+      </Grid> */
+      /* <MobileStepper
         steps={maxSteps}
         position="static"
         variant="text"
@@ -183,8 +165,7 @@ const HeadingSection = props => {
             Back
           </Button>
         }
-      /> */}
-    </div>
+      /> */
     )
 }
 

@@ -340,7 +340,6 @@ const LandingMedic = props => {
           else{
             SetSizeBut("medium");
           }
-        
         })
     })
     return (

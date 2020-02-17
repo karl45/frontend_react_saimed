@@ -53,7 +53,6 @@ const AppointmentPage = props => {
     return (
         <Container className={classes.container}>
             <Grid container spacing={4} justify="space-around">
-                
                 <Grid item xs={12}  md={6}>
                     <Typography className={classes.subheading}>Выберите дату:</Typography>
                     <DatePicker value={selectedDate} 
@@ -74,8 +73,7 @@ const AppointmentPage = props => {
                                     <Button 
                                         variant={selectedTime === a.id ? "contained" : "outlined"} 
                                         color={selectedTime === a.id ? "primary" : "default"} 
-                                        onClick={e => setSelectedTime(a.id)}
-                                    >
+                                        onClick={e => setSelectedTime(a.id)}>
                                         {dateFormat(a.startTime, 'HH:MM')} - {dateFormat(a.endTime, 'HH:MM')}
                                     </Button>
                                 </ListItem>

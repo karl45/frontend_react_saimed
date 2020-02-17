@@ -6,7 +6,7 @@ import { faFacebookF, faLinkedinIn, faTwitter, faDribbble } from "@fortawesome/f
 
 const useStyles = makeStyles(theme => createStyles({
     section: {
-        backgroundColor: '#2978A0',
+        backgroundColor: '#9403fc',
         color: 'white',
         padding:"100px 0",
         textAlign: 'center',

@@ -177,7 +177,7 @@ const Navbar = props =>{
             SAIMED
           </Typography>
           <Button className={classes.navButton} onClick={openLoginModal}>
-              <FontAwesomeIcon icon={faUserCircle} size="2x" className={classes.userIcon}/>
+            <FontAwesomeIcon icon={faUserCircle} size="2x" className={classes.userIcon}/>
           </Button>
           </Toolbar>
       </AppBar>
@@ -232,6 +232,7 @@ const Navbar = props =>{
         </ListItem>
         </List>       
       </Drawer>
+      
       <AppBar position="fixed" className={classes.appbar}>
       <Toolbar className={scrolledDown ? classes.toolbarShrink : classes.toolbar}>
       <Typography className={classNames(classes.title, scrolledDown ? classes.titleShrinkSize : '')}>

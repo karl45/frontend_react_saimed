@@ -24,7 +24,7 @@ const Landing = props => {
         
         <Fragment >
             <Navbar openLoginModal={openLoginModal}/>
-            <HeadingSection />
+            <HeadingSection openLoginModal={openLoginModal}/>
             <div className="full_bg">
                 <ServicesSection /> 
                 <OnlineAppointmentsSection />

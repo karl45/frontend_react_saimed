@@ -4,7 +4,7 @@ import { makeStyles, createStyles } from '@material-ui/styles'
 
 const useStyles = makeStyles(theme => createStyles({
     section: {
-        backgroundColor: '#0B4F6C',
+        backgroundColor: '#590396',
         paddingBottom: '1.5rem',
         paddingTop: '1.5rem',
         color: 'white',
