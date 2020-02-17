@@ -65,7 +65,6 @@ const RegisterModal = props => {
                 Зарегистрироваться
             </Button>
          </DialogActions>
-     
         </Dialog>
     )
 }

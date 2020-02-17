@@ -22,7 +22,7 @@ const PatientAppointmentsList = props => {
     const classes = useStyles()
     const [futureAppointments, setFutureAppointments] = useState([])
     const [pastAppointments, setPastAppointments] = useState([])
-    
+
     const fetchData = async () => {
         try {
             const data = await PatientService.getMyAppointments()
@@ -46,11 +46,13 @@ const PatientAppointmentsList = props => {
             <Typography className={classes.subheading}>Ваши записи:</Typography>
             <Grid container spacing={1}>
                 {
-                    futureAppointments.length > 0 ? futureAppointments.map(a =>
+                    futureAppointments.length > 0 ?   
+                    futureAppointments.map(a =>
                         <Grid item xs={12} key={a.id}>
                             <FutureAppointmentItem date={a.date} startTime={a.startTime} endTime={a.endTime} appointmentId={a.id} onCancel={fetchData}/>
                         </Grid>
                     ) :
+
                     <Grid item xs={12}>
                         <Card className={classes.emptyAppointments}>
                             <Typography>На данный момент у вас нет записей</Typography>
@@ -73,6 +75,7 @@ const PatientAppointmentsList = props => {
                     </Grid>
                 }
             </Grid>
+            
         </Container>
     )
 }
